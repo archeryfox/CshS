@@ -10,8 +10,10 @@ namespace Calculator
     {
         static void Main(string[] args)
         {
-            int act, n;
+            int act;
+            float n;
             bool Stoped = false;
+
             bool FirstOpen = true;
             Console.WriteLine("         __\r\n _(\\    |@@|\r\n(__/\\__ \\--/ __\r\n   \\___|----|  |   __\r\n       \\ }{ /\\ )_ / _\\\r\n       /\\__/\\ \\__O (__\r\n      (--/\\--)    \\__/\r\n      _)(  )(_\r\n     `---''---`");
             do
@@ -39,17 +41,18 @@ namespace Calculator
                     return int.Parse(Console.ReadLine());
                 }
                 act = ActIn();
-                int Num1In()
+                
+                float Num1In()
                 {
-                    
-                    Console.Write("Введите первое число: ");
-                    return int.Parse(Console.ReadLine());
+                    if (act == 6 || act == 7 || act == 8) Console.Write("Введите число: ");
+                    else Console.Write("Введите первое число: ");
+                    return float.Parse(Console.ReadLine());
                 }
-
-                int Num2In()
+                
+                float Num2In()
                 {
                     Console.Write("Введите второе число: ");
-                    return int.Parse(Console.ReadLine());
+                    return float.Parse(Console.ReadLine());
                 }
                 switch (act)
                 {
@@ -77,6 +80,7 @@ namespace Calculator
                         n = Num1In();
                         for (int i = 1; i <= n; i++)
                             anws *= i;
+                        if (anws == 1 && n == 0) anws = 0;
                         Console.WriteLine($"Результат {anws}"); break;
                     case 9:
                         Console.ForegroundColor = ConsoleColor.Green;

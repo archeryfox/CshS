@@ -1,0 +1,8 @@
+G:\site\C#\Тренинг\Калькулятор\Calculator\bin\Debug\Calculator.exe.config
+G:\site\C#\Тренинг\Калькулятор\Calculator\bin\Debug\Calculator.exe
+G:\site\C#\Тренинг\Калькулятор\Calculator\bin\Debug\Calculator.pdb
+G:\site\C#\Тренинг\Калькулятор\Calculator\obj\Debug\Calculator.csproj.AssemblyReference.cache
+G:\site\C#\Тренинг\Калькулятор\Calculator\obj\Debug\Calculator.csproj.SuggestedBindingRedirects.cache
+G:\site\C#\Тренинг\Калькулятор\Calculator\obj\Debug\Calculator.csproj.CoreCompileInputs.cache
+G:\site\C#\Тренинг\Калькулятор\Calculator\obj\Debug\Calculator.exe
+G:\site\C#\Тренинг\Калькулятор\Calculator\obj\Debug\Calculator.pdb

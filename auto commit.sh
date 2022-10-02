@@ -1,1 +1,1 @@
-git add . && git commit -m "Тест автокомита" && git push origin
+git add . && git commit -m "Auto-bash-commit" && git push origin

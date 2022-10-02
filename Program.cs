@@ -34,8 +34,14 @@ namespace Calculator
                 }
         static float Num1In()
         {
-            if (act == 6 || act == 7 || act == 8) Console.Write("Введите число: ");
-            else Console.Write("Введите первое число: ");
+            if (act == 6 || act == 7 || act == 8)
+            {
+                Console.Write("Введите число: ");
+            }
+            else
+            {
+                Console.Write("Введите первое число: ");
+            }
             return float.Parse(Console.ReadLine());
         }
 
@@ -92,8 +98,6 @@ namespace Calculator
                         break;
                 }
             } while (!Stoped);
-
-
         }
     }
 }

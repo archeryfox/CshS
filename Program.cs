@@ -8,17 +8,9 @@ namespace Calculator
 {
     internal class Program
     {
-        static void Main(string[] args)
-        {
-            int act;
-            float n;
-            bool Stoped = false;
-
-            bool FirstOpen = true;
-            Console.WriteLine("         __\r\n _(\\    |@@|\r\n(__/\\__ \\--/ __\r\n   \\___|----|  |   __\r\n       \\ }{ /\\ )_ / _\\\r\n       /\\__/\\ \\__O (__\r\n      (--/\\--)    \\__/\r\n      _)(  )(_\r\n     `---''---`");
-            do
-            {
-                int ActIn()
+        static bool FirstOpen = true;
+        static int act;
+        static int ActIn()
                 {
                     if (FirstOpen)
                     {
@@ -40,20 +32,29 @@ namespace Calculator
                     }
                     return int.Parse(Console.ReadLine());
                 }
+        static float Num1In()
+        {
+            if (act == 6 || act == 7 || act == 8) Console.Write("Введите число: ");
+            else Console.Write("Введите первое число: ");
+            return float.Parse(Console.ReadLine());
+        }
+
+        static float Num2In()
+        {
+            Console.Write("Введите второе число: ");
+            return float.Parse(Console.ReadLine());
+        }
+        static void Main(string[] args)
+        {
+            
+            float n;
+            bool Stoped = false;
+
+            Console.WriteLine("         __\r\n _(\\    |@@|\r\n(__/\\__ \\--/ __\r\n   \\___|----|  |   __\r\n       \\ }{ /\\ )_ / _\\\r\n       /\\__/\\ \\__O (__\r\n      (--/\\--)    \\__/\r\n      _)(  )(_\r\n     `---''---`");
+            do
+            {
                 act = ActIn();
-                
-                float Num1In()
-                {
-                    if (act == 6 || act == 7 || act == 8) Console.Write("Введите число: ");
-                    else Console.Write("Введите первое число: ");
-                    return float.Parse(Console.ReadLine());
-                }
-                
-                float Num2In()
-                {
-                    Console.Write("Введите второе число: ");
-                    return float.Parse(Console.ReadLine());
-                }
+
                 switch (act)
                 {
                     case 1:
@@ -71,7 +72,8 @@ namespace Calculator
                     case 5:
                         Console.WriteLine("Результат " + Math.Pow(Num1In(), Num2In()));
                         break;
-                    case 6: Console.WriteLine("Результат " + Math.Sqrt(Num1In())); break;
+                    case 6: Console.WriteLine("Результат " + Math.Sqrt(Num1In()));
+                        break;
                     case 7:
                         Console.WriteLine("Результат " + (Convert.ToSingle(Num1In())) * 0.01);
                         break;
@@ -81,7 +83,8 @@ namespace Calculator
                         for (int i = 1; i <= n; i++)
                             anws *= i;
                         if (anws == 1 && n == 0) anws = 0;
-                        Console.WriteLine($"Результат {anws}"); break;
+                        Console.WriteLine($"Результат {anws}"); 
+                        break;
                     case 9:
                         Console.ForegroundColor = ConsoleColor.Green;
                         Console.WriteLine("Пока, спасибо что открыли");

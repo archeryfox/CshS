@@ -14,7 +14,7 @@ namespace PW2_3in1
             Console.WriteLine("\tПрограмка 3 в 1\n    1. Игра \"Угадай число\"\r\n  " +
                 "  2. Таблица умножения\r\n  " +
                 "  3. Вывод делителей числа");
-            Console.Write("\n\t");
+            Console.Write("\n\tВыбери действие - ");
             int act;
             do
             {

@@ -8,15 +8,14 @@ namespace PW2_3in1
         static void Main(string[] args)
         {
             Console.WriteLine("\n\t▒▓▒▓▒▓▒▓▒▓▒▓─▄▀▀▀▄\r\n\t─██▀████▀██──▀▄▀──█\r\n\tO▀████████▀O─────█\r\n\t───▀█▄▄█▀────────█\r\n\t──▓▒▓▒▓▒▓▒───────█\r\n");
-            Console.WriteLine("\tПрограмка 3 в 1\n  " +
-                "  1. Игра \"Угадай число\"\r\n  " +
-                "  2. Таблица умножения\r\n  " +
-                "  3. Вывод делителей числа\n" +
-                "    4. Выйти");
             int act;
             do
             {
-            Console.Write("\n\tВыбери действие - ");
+                Console.WriteLine("\n    1. Игра \"Угадай число\"\r\n  " +
+                "  2. Таблица умножения\r\n  " +
+                "  3. Вывод делителей числа\n" +
+                "    4. Выйти");
+                Console.Write("\n  Выбери действие - ");
                 while (!int.TryParse(Console.ReadLine(), out act))
                 {
                     Console.ForegroundColor = ConsoleColor.Red;
@@ -46,7 +45,6 @@ namespace PW2_3in1
                         break;
                 }
             } while (act > 0 && act < 4);
-
         }
         
         static void WhatANum()
@@ -80,7 +78,6 @@ namespace PW2_3in1
             }
             while (YourNum != RandomNum)
             {
-
                 if (YourNum > RandomNum)
                 {
                    
@@ -107,11 +104,40 @@ namespace PW2_3in1
         static void MultiplationTable()
         {
             int[,] Table = new int[10,10];
-
+            for (int i = 1; i < Table.GetUpperBound(0)+1; i++)
+            {
+                for (int j = 1; j < Table.GetUpperBound(1)+1; j++)
+                {
+                    Table[i,j] = j*i;
+                }
+            }
+            for (int i = 1; i < Table.GetUpperBound(0) + 1; i++)
+            {
+                for (int j = 1; j < Table.GetUpperBound(1)+1; j++)
+                {
+                    Console.Write("\t "+Table[i, j]);
+                }
+                Console.WriteLine();
+            }
         }
         static void Divider()
         {
-
+            Console.WriteLine("Напишите цифру, к которой хотите показать делители:");
+            while (!int.TryParse(Console.ReadLine(), out YourNum))
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine(" Введено не число! Повторите ввод ");
+                Console.Write(" ");
+                Console.ForegroundColor = ConsoleColor.White;
+            }
+            for (int i = 1; i <= YourNum; i++)
+            {
+                if (YourNum % i == 0)
+                {
+                    Console.Write("\t" + i);
+                }
+            }
+            Console.WriteLine();
         }
     }
 }

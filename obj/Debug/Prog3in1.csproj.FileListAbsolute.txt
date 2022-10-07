@@ -1,8 +1,0 @@
-F:\site\C#\Тренинг\Калькулятор\CSharp_Studing\bin\Debug\Calculator.exe.config
-F:\site\C#\Тренинг\Калькулятор\CSharp_Studing\bin\Debug\Calculator.exe
-F:\site\C#\Тренинг\Калькулятор\CSharp_Studing\bin\Debug\Calculator.pdb
-F:\site\C#\Тренинг\Калькулятор\CSharp_Studing\obj\Debug\Prog3in1.csproj.AssemblyReference.cache
-F:\site\C#\Тренинг\Калькулятор\CSharp_Studing\obj\Debug\Prog3in1.csproj.SuggestedBindingRedirects.cache
-F:\site\C#\Тренинг\Калькулятор\CSharp_Studing\obj\Debug\Prog3in1.csproj.CoreCompileInputs.cache
-F:\site\C#\Тренинг\Калькулятор\CSharp_Studing\obj\Debug\Calculator.exe
-F:\site\C#\Тренинг\Калькулятор\CSharp_Studing\obj\Debug\Calculator.pdb

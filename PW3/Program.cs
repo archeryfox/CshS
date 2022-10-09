@@ -7,7 +7,8 @@ namespace Piano
         /// <summary>
         /// Номер октавы
         /// </summary>
-        static int OctNum = 0;
+        static int OctNum = 5;
+        static int PKN = 0;
         static void Main(string[] args)
         {
             
@@ -22,8 +23,21 @@ namespace Piano
                 { 2093, 2217, 2349, 2489, 2637, 2794, 2960, 3136, 3322, 3520, 3729, 3951 },
                 { 4186, 4435, 4699, 4978, 5274, 5588, 5920, 6272, 6645, 7040, 7459, 7902 },
             };
-            Console.WriteLine("Выбор октав - F1, F2, F3, F4, F5, F6, F7, F8, F9.");
-            Console.WriteLine($"Текущая октава - 0");
+            Console.WriteLine("\tЭто пианино. Белые клавиши ASDFGHJ, Чёрные QERTU");
+            Console.SetCursorPosition(3, 1);
+            Console.WriteLine("           __..--''``---....___   _..._    __");
+            Console.SetCursorPosition(3, 2);
+            Console.WriteLine(" /// //_.-'    .-/\";  `        ``<._  ``.''_ `. / // /\r");
+            Console.SetCursorPosition(3, 3);
+            Console.WriteLine("///_.-' _..--.'_    \\                    `( ) ) // //\r");
+            Console.SetCursorPosition(3, 4);
+            Console.WriteLine("/ (_..-' // (< _     ;_..__               ; `' / ///\r");
+            Console.SetCursorPosition(3, 5);
+            Console.WriteLine(" / // // //  `-._,_)' // / ``--...____..-' /// / //");
+            Console.SetCursorPosition(4, 7);
+            Console.WriteLine("Выбор октав - F1, F2, F3, F4, F5, F6, F7, F8, F9. Также смена октав стирает \"нотный\" рисунок");
+            Console.SetCursorPosition(4, 8);
+            Console.WriteLine($"Текущая октава - 5");
             PressKey(Octavas);
         }
         /// <summary>
@@ -36,6 +50,7 @@ namespace Piano
             while (true)
             {
             ConsoleKey Key = Console.ReadKey(true).Key;
+                PKN++;
                 switch (Key)
                 {
                     case ConsoleKey.A: 
@@ -124,17 +139,95 @@ namespace Piano
         private static void OctOut()
         {
             Console.Clear();
+            Console.ForegroundColor = ConsoleColor.White;
+            Console.SetCursorPosition(3, 1);
+            Console.WriteLine("           __..--''``---....___   _..._    __");
+            Console.SetCursorPosition(3, 2);
+            Console.WriteLine(" /// //_.-'    .-/\";  `        ``<._  ``.''_ `. / // /\r");
+            Console.SetCursorPosition(3, 3);
+            Console.WriteLine("///_.-' _..--.'_    \\                    `( ) ) // //\r");
+            Console.SetCursorPosition(3, 4);
+            Console.WriteLine("/ (_..-' // (< _     ;_..__               ; `' / ///\r");
+            Console.SetCursorPosition(3, 5);
+            Console.WriteLine(" / // // //  `-._,_)' // / ``--...____..-' /// / //");
+            Console.SetCursorPosition(4, 7);
             Console.WriteLine("Выбор октав - F1, F2, F3, F4, F5, F6, F7, F8, F9.");
-            Console.WriteLine($"Текущая октава - {OctNum}");
+            Console.SetCursorPosition(4, 8);
+            Console.WriteLine($"Текущая октава - {OctNum+1}");
+            
+           
         }
         /// <summary>
         /// Проигрыш ноты из массива октав
         /// </summary>
         /// <param name="n"></param>
         /// <param name="Octavas"></param>
+        
         static void Playing(int n, int[,] Octavas)
         {
+            Random random = new Random();
+            Random random2 = new Random();
+            PKN = random.Next(1, 11);
+
+            int x = random.Next(2, random.Next(3, 150));
+            int y = (random2.Next(9, 20) + (random.Next(1, random2.Next(2, 12))));
+
+            switch (PKN)
+            {
+                case 1:
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.SetCursorPosition(x, y);
+                    Console.WriteLine("Пим");
+                    break;
+                case 2:
+                    Console.ForegroundColor = ConsoleColor.Yellow;
+                    Console.SetCursorPosition(x, y);
+                    Console.WriteLine("Пам");
+                    break;
+                case 3:
+                    Console.ForegroundColor = ConsoleColor.Magenta;
+                    Console.SetCursorPosition(x, y);
+                    Console.WriteLine("Бэм");
+                    break;
+                case 4:
+                    Console.ForegroundColor = ConsoleColor.Cyan;
+                    Console.SetCursorPosition(x, y);
+                    Console.WriteLine("Бин");
+                    break;
+                case 5:
+                    Console.ForegroundColor = ConsoleColor.DarkYellow;
+                    Console.SetCursorPosition(x, y);
+                    Console.WriteLine("Тум");
+                    break;
+                case 6:
+                    Console.ForegroundColor = ConsoleColor.Green;
+                    Console.SetCursorPosition(x, y);
+                    Console.WriteLine("Лян");
+                    break;
+                case 7:
+                    Console.ForegroundColor = ConsoleColor.Blue;
+                    Console.SetCursorPosition(x, y);
+                    Console.WriteLine("Пем");
+                    break;
+                case 8:
+                    Console.ForegroundColor = ConsoleColor.DarkMagenta;
+                    Console.SetCursorPosition(x, y);
+                    Console.WriteLine("Тен");
+                    break;
+                case 9:
+                    Console.ForegroundColor = ConsoleColor.DarkRed;
+                    Console.SetCursorPosition(x, y);
+                    Console.WriteLine("Дем");
+                    break;
+                case 10:
+
+                    Console.ForegroundColor = ConsoleColor.DarkCyan;
+                    Console.SetCursorPosition(x, y);
+                    Console.WriteLine("Пым");
+                    break;
+            }
             Console.Beep((Octavas[OctNum, n]+1000), 100);
+            
         }
     }
 }

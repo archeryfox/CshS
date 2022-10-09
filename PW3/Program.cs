@@ -23,6 +23,7 @@ namespace Piano
                 { 2093, 2217, 2349, 2489, 2637, 2794, 2960, 3136, 3322, 3520, 3729, 3951 },
                 { 4186, 4435, 4699, 4978, 5274, 5588, 5920, 6272, 6645, 7040, 7459, 7902 },
             };
+
             Console.WriteLine("\tЭто пианино. Белые клавиши ASDFGHJ, Чёрные QERTU");
             Console.SetCursorPosition(3, 1);
             Console.WriteLine("           __..--''``---....___   _..._    __");
@@ -154,9 +155,8 @@ namespace Piano
             Console.WriteLine("Выбор октав - F1, F2, F3, F4, F5, F6, F7, F8, F9.");
             Console.SetCursorPosition(4, 8);
             Console.WriteLine($"Текущая октава - {OctNum+1}");
-            
-           
         }
+
         /// <summary>
         /// Проигрыш ноты из массива октав
         /// </summary>
@@ -169,8 +169,8 @@ namespace Piano
             Random random2 = new Random();
             PKN = random.Next(1, 11);
 
-            int x = random.Next(2, random.Next(3, 150));
-            int y = (random2.Next(9, 20) + (random.Next(1, random2.Next(2, 12))));
+            int x = random.Next(1, 100);
+            int y = (random2.Next(9, 20) + (random.Next(1, 10)));
 
             switch (PKN)
             {

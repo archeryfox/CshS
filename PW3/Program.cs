@@ -11,7 +11,7 @@ namespace Piano
         static int PKN = 0;
         static void Main(string[] args)
         {
-            
+            Console.CursorVisible = false;
             int[,] Octavas = {
                 { 16, 18, 21, 22, 24, 28, 31, 17, 19, 23, 26, 29 },
                 { 33, 37, 41, 44, 49, 55, 62, 35, 39, 46, 52, 58 },

@@ -30,21 +30,25 @@ namespace To_Do_List
         /// <summary>
         /// Работа с текущим днём
         /// </summary>
-        /// <param name="ThisDayList"></param>
-        public static void Check(dynamic[] ThisDayList)
+        /// <param name="ThisMounthList"></param>
+        public static void Check(dynamic[] ThisMounthList)
         {
-            if(ThisDayList.Length == 0)
+            if(ThisMounthList[time.AddDays(DN).Day].Count == 0)
             {
                 Console.WriteLine("  На сегодня нет записей\n " +
                         " CTRL+ для создания задачи, V для просмотра");
             }
             else
             {
-                Console.WriteLine(ThisDayList.Length);
-                for (int i = 0; i < ThisDayList.Length; i++)
+                Console.WriteLine("+++++++++"+ThisMounthList[time.AddDays(DN).Day].Count);
+                for (int i = 0; i < ThisMounthList[time.AddDays(DN).Day].Count; i++)
                 {
-                        Console.WriteLine($"  {ThisDayList[i].Id}. {ThisDayList[i].Name}\n" +
-                        $"   {ThisDayList[i].Description}.2022\n");
+                    for (int j = 0; j < ThisMounthList[time.AddDays(DN).Day][i].Count; j++)
+                    {
+                        Console.WriteLine($"  {ThisMounthList[time.AddDays(DN).Day][i][j].Id}. {ThisMounthList[time.AddDays(DN).Day][i][j].Name}\n" +
+                        $"   {ThisMounthList[time.AddDays(DN).Day][i][j].Description}.2022\n");
+                    }
+
                 }
                 Console.CursorVisible = true;
 

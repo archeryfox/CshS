@@ -78,13 +78,13 @@ namespace To_Do_List
                     {
                         Id = MemoNum++,
                         Name = Memo.InputMemoName(),
-                        Description = Memo.InputMemoDescription() + $"({day}.{month})",
+                        Description = Memo.InputMemoDescription() + $"({day}.{month})"
                     });
                     Memo.DayList.Add(MemoBook);
                     Memo.MonthList[time.AddDays(DN).Day] = Memo.DayList;
                     Console.Clear();
                     Console.WriteLine($"\n Выбрана дата {day}.{month}.{time.Year}");
-                    Memo.Check(Memo.MonthList[time.AddDays(DN).Day]);
+                    Memo.Check(Memo.MonthList);
                 }
                 if (consoleKeyInfo.Modifiers.HasFlag(ConsoleModifiers.Control) && consoleKeyInfo.Key == ConsoleKey.OemMinus)
                 {
@@ -103,7 +103,8 @@ namespace To_Do_List
                         Console.SetCursorPosition(1, 1);
                         Console.WriteLine($"Выбрана дата {day}.{month}.{time.Year}");
                         Page(MemoBook, day, month);
-                        Memo.Check(Memo.MonthList[time.AddDays(DN).Day]);
+                        Console.WriteLine(Memo.MonthList.Length);
+                        Memo.Check(Memo.MonthList);
                         break;
                     case ConsoleKey.DownArrow:
                         //Console.Write("v");
@@ -115,12 +116,12 @@ namespace To_Do_List
                         DN--;
                         Page(MemoBook, day, month);
                         Console.Write("<-");
-                        Memo.Check(Memo.MonthList[time.AddDays(DN).Day]);
+                        Memo.Check(Memo.MonthList);
                         break;
                     case ConsoleKey.RightArrow:
                         DN++;
                         Page(MemoBook, day, month);
-                        Memo.Check(Memo.MonthList[time.AddDays(DN).Day]);
+                        Memo.Check(Memo.MonthList);
                         Console.Write("->");
                         break;
                 }

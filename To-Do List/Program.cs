@@ -14,14 +14,16 @@ namespace To_Do_List
             public static int DN = 0;
             static int MonthMem = time.AddDays(DN).Month;
             static int DayMem = time.Day;
+        /// <summary>
+        /// Количество записей
+        /// </summary>
+            static int MemoNumList = 0;
 
         public static void Main(string[] args)
         {
-
             List<Memo> MemoBook = new List<Memo>();
-
+            
             List<List<Memo>> Memos = new List<List<Memo>> { };
-            int MemoNum = 1;
 
 
             /*  for (int i = 0; i < Memos.Count; i++)
@@ -52,7 +54,7 @@ namespace To_Do_List
                 month = $"{MonthMem}";
             }
 
-            for (int i = 0; i < 31; i++)
+            for (int i = 0; i < 32; i++)
             {
                 Memo.MonthList[i] = new List<Memo>();
             }
@@ -73,15 +75,28 @@ namespace To_Do_List
                 {
                     //Console.WriteLine("+");
                     Console.CursorVisible = true;
+                    MemoNumList++;
                     DataFix(ref day, ref month);
                     MemoBook.Add(new Memo()
                     {
-                        Id = MemoNum++,
                         Name = Memo.InputMemoName(),
                         Description = Memo.InputMemoDescription() + $"({day}.{month})"
                     });
                     Memo.DayList.Add(MemoBook);
+
                     Memo.MonthList[time.AddDays(DN).Day] = Memo.DayList;
+
+                    for (int i = 1; i < Memo.MonthList[time.AddDays(DN).Day].Count; i++)
+                    {
+                        // Месяц[День - №Списка - Задача]
+                        for (int j = 1; j < Memo.MonthList[time.AddDays(DN).Day][MemoNumList].Count; j++)
+                        {
+                            if (Memo.MonthList[time.AddDays(DN).Day][MemoNumList][j].Day == time.AddDays(DN).Day)
+                            {
+                                Memo.MonthList[time.AddDays(DN).Day][i][j].IdBuffer = Memo.MonthList[time.AddDays(DN).Day][Memo.MonthList[time.AddDays(DN).Day][i].Count - 1].Count;
+                            }
+                        }
+                    }
                     Console.Clear();
                     Console.WriteLine($"\n Выбрана дата {day}.{month}.{time.Year}");
                     Memo.Check(Memo.MonthList);

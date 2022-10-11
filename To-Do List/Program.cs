@@ -84,7 +84,7 @@ namespace To_Do_List
                     });
                     Memo.DayList.Add(MemoBook);
 
-                    Memo.MonthList[time.AddDays(DN).Day] = Memo.DayList;
+                    Memo.MonthList[time.AddDays(DN).Day] = Memo.DayList; 
 
                     for (int i = 1; i < Memo.MonthList[time.AddDays(DN).Day].Count; i++)
                     {

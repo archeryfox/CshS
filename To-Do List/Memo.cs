@@ -56,7 +56,7 @@ namespace To_Do_List
             }
             else
             {
-                int j = 0;int i = 0;
+                int j = 0;int i = 0; 
                 Console.WriteLine(" Кол-во заданий "+ThisMounthList[time.AddDays(DN).Day].Count);
                 for (; i < 1; i++)
                 {

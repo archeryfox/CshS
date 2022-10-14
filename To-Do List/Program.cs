@@ -60,12 +60,27 @@ namespace To_Do_List
                     Memo.AllMemos.Add(new Memo()
                     {
                         Name = Memo.InputMemoName(),
+<<<<<<< HEAD
                         Description = Memo.InputMemoDescription(),
                         Day = time.AddDays(DN).Day,
                         Mouth = time.AddDays(DN).Month,
                         Year = time.AddDays(DN).Year,
                     });  
                     Memo.AllMemos[Memo.AllMemos.Count-1].Id = Memo.AllMemos.Where(i => i.Day == time.AddDays(DN).Day).ToList().Count;
+=======
+                        Description = Memo.InputMemoDescription() + $"({day}.{month})"
+                    });
+                    Memo.DayList.Add(MemoBook);
+
+                    Memo.MonthList[time.AddDays(DN).Day] = Memo.DayList;
+
+                                                // Месяц[День - №Списка колво списков - Задача]
+                    Memo.MonthList[time.AddDays(DN).Day][Memo.MonthList[time.AddDays(DN).Day].Count-1]
+                        [  Memo.MonthList[time.AddDays(DN).Day][Memo.MonthList[time.AddDays(DN).Day].Count - 1] ].IdBuffer =
+                        Memo.MonthList[time.AddDays(DN).Day][Memo.MonthList[time.AddDays(DN).Day].Count - 1]
+                        [Memo.MonthList[time.AddDays(DN).Day][Memo.MonthList[time.AddDays(DN).Day].Count]].Count;
+
+>>>>>>> cd864cf9f24de9c2e98ae1182535dcf91c0f2366
                     Console.Clear();
                     Console.WriteLine($"\n Выбрана дата {day}.{month}.{time.Year}");
                     Memo.Check(Memo.AllMemos);

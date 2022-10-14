@@ -6,28 +6,16 @@ using System.Threading.Tasks;
 
 namespace To_Do_List
 {
-    internal class Indexator : Program
-    {
-        public int Id = 0;
-        static public int idB = 0;
-        
-        public int Ind(dynamic[] Days, int itb)
-        {
-            return 0;
-        }
-    }
 
     internal class Memo : Program
     {
-        public int IdBuffer = 0;
         public string Name = String.Empty;
         public string Description = String.Empty;
-        public int Mouth = time.AddDays(DN).Month;
         public int Day = time.AddDays(DN).Day;
-        public List<List<int>> idList = new List<List<int>>();
-        static public List<List<Memo>> DayList = new List<List<Memo>>();
-        static public dynamic[] MonthList = new dynamic[32];
-        public Indexator Id = new Indexator();
+        public int Mouth = time.AddDays(DN).Month;
+        public int Year = time.AddDays(DN).Year;
+        public int Id = 0;
+        static public List<Memo> AllMemos = new List<Memo>();
 
         public static string InputMemoName()
         {
@@ -41,39 +29,78 @@ namespace To_Do_List
         }
 
         /// <summary>
-        /// Работа с текущим днём
+        /// Выбор задачи курсором
         /// </summary>
-        /// <param name="ThisMounthList"></param>
-        /// 
-
-        public static void Check(dynamic[] ThisMounthList)
+        /// <param name="AllMemo"></param>
+        public static void Select(List<Memo> AllMemo)
         {
-                Console.WriteLine("\n\t"+time.AddDays(DN).Day+":"+DN);
-            if(ThisMounthList[time.AddDays(DN).Day].Count == 0)
+            if(CursorSelection > 2)
             {
-                Console.WriteLine("  На сегодня нет записей\n " +
-                        " CTRL+ для создания задачи, V для просмотра");
+            Console.SetCursorPosition(1, CursorSelection);
+            Console.WriteLine($"{CursorSelection}>");
             }
-            else
+            if (CursorSelection < 2)
             {
-                int j = 0;int i = 0; 
-                Console.WriteLine(" Кол-во заданий "+ThisMounthList[time.AddDays(DN).Day].Count);
-                for (; i < 1; i++)
-                {
-                    // Месяц[День - №Списка - Задача]
-                    for (; j < ThisMounthList[time.AddDays(DN).Day][i].Count; j++)
-                    {
-                        if (ThisMounthList[time.AddDays(DN).Day][i][j].Day == time.AddDays(DN).Day)
-                        {
-                            Console.WriteLine($"  {ThisMounthList[time.AddDays(DN).Day][i][j].IdBuffer/*ThisMounthList[time.AddDays(DN).Day][ThisMounthList[time.AddDays(DN).Day][i].Count-1].Count*/}. {ThisMounthList[time.AddDays(DN).Day][i][j].Name}\n" +
-                            $"   {ThisMounthList[time.AddDays(DN).Day][i][j].Description}.2022\n");
-                        }
-                    }
-                }
-
-                Console.CursorVisible = true;
+                CursorSelection = 2;
+                Console.SetCursorPosition(1, CursorSelection);
+                Console.Write($"{CursorSelection}>");
+            }
+            if (CursorSelection > AllMemos.Where(i => i.Day == time.AddDays(DN).Day).ToList().Count)
+            {
+                CursorSelection = AllMemos.Where(i => i.Day == time.AddDays(DN).Day).ToList().Count;
+                Console.SetCursorPosition(1, CursorSelection + 1);
+                Console.Write($"{CursorSelection}->");
             }
         }
 
+        /// <summary>
+        /// Вывод задач
+        /// </summary>
+        /// <param name="AllMemo"></param>
+        /// 
+        public static void Check(List<Memo> AllMemo)
+        {
+            Console.Clear();
+            Page(Memo.AllMemos, Program.day, month);
+            Console.Write("  Вектор времени: "+DN);
+            if(AllMemos.Where(i => i.Year == time.AddDays(DN).Year &&
+            i.Mouth == time.AddDays(DN).Month &&
+            i.Day == time.AddDays(DN).Day).ToList().Count == 0)
+            {
+                Console.WriteLine("   На сегодня нет записей\n " +
+                        " CTRL+ для создания задачи, V для просмотра");
+            }
+            else
+            { 
+                Console.Write("   Кол-во заданий "+AllMemo.Count+"\n");
+                List<Memo> t = new List<Memo>();
+
+                foreach (var memo in AllMemo)
+                {
+                    if(memo.Year == time.AddDays(DN).Year &&
+                    memo.Mouth == time.AddDays(DN).Month &&
+                    memo.Day == time.AddDays(DN).Day)        
+                       Console.WriteLine($"    {memo.Id}. {memo.Name}");
+                }
+                Console.CursorVisible = false;
+            Select(AllMemo);
+            }
+        }
+        /// <summary>
+        /// Просмотр с описанием
+        /// </summary>
+        /// <param name="memos"></param>
+        public static void Open(Memo memos)
+        {
+
+            foreach (var memo in AllMemos)
+            {
+                if (memo.Year == time.AddDays(DN).Year &&
+                memo.Mouth == time.AddDays(DN).Month &&
+                memo.Day == time.AddDays(DN).Day)
+                    Console.WriteLine($"    {memo.Id}. {memo.Name}\n   {memo.Description}");
+            }
+            //Console.WriteLine($"    {memos.Id}. {memos.Name}\n   {memos.Description}");
+        }
     }
 }

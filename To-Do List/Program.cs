@@ -84,19 +84,14 @@ namespace To_Do_List
                     });
                     Memo.DayList.Add(MemoBook);
 
-                    Memo.MonthList[time.AddDays(DN).Day] = Memo.DayList; 
+                    Memo.MonthList[time.AddDays(DN).Day] = Memo.DayList;
 
-                    for (int i = 1; i < Memo.MonthList[time.AddDays(DN).Day].Count; i++)
-                    {
-                        // Месяц[День - №Списка - Задача]
-                        for (int j = 1; j < Memo.MonthList[time.AddDays(DN).Day][MemoNumList].Count; j++)
-                        {
-                            if (Memo.MonthList[time.AddDays(DN).Day][MemoNumList][j].Day == time.AddDays(DN).Day)
-                            {
-                                Memo.MonthList[time.AddDays(DN).Day][i][j].IdBuffer = Memo.MonthList[time.AddDays(DN).Day][Memo.MonthList[time.AddDays(DN).Day][i].Count - 1].Count;
-                            }
-                        }
-                    }
+                                                // Месяц[День - №Списка колво списков - Задача]
+                    Memo.MonthList[time.AddDays(DN).Day][Memo.MonthList[time.AddDays(DN).Day].Count-1]
+                        [  Memo.MonthList[time.AddDays(DN).Day][Memo.MonthList[time.AddDays(DN).Day].Count - 1] ].IdBuffer =
+                        Memo.MonthList[time.AddDays(DN).Day][Memo.MonthList[time.AddDays(DN).Day].Count - 1]
+                        [Memo.MonthList[time.AddDays(DN).Day][Memo.MonthList[time.AddDays(DN).Day].Count]].Count;
+
                     Console.Clear();
                     Console.WriteLine($"\n Выбрана дата {day}.{month}.{time.Year}");
                     Memo.Check(Memo.MonthList);

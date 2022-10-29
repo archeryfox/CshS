@@ -6,3 +6,11 @@ F:\site\C#\Тренинг\Калькулятор\CshS\obj\Debug\Сakes.csproj.Su
 F:\site\C#\Тренинг\Калькулятор\CshS\obj\Debug\Сakes.csproj.CoreCompileInputs.cache
 F:\site\C#\Тренинг\Калькулятор\CshS\obj\Debug\Calculator.exe
 F:\site\C#\Тренинг\Калькулятор\CshS\obj\Debug\Calculator.pdb
+D:\CshS\obj\Debug\Сakes.csproj.AssemblyReference.cache
+D:\CshS\obj\Debug\Сakes.csproj.SuggestedBindingRedirects.cache
+D:\CshS\obj\Debug\Сakes.csproj.CoreCompileInputs.cache
+D:\CshS\bin\Debug\Calculator.exe.config
+D:\CshS\bin\Debug\Calculator.exe
+D:\CshS\bin\Debug\Calculator.pdb
+D:\CshS\obj\Debug\Calculator.exe
+D:\CshS\obj\Debug\Calculator.pdb

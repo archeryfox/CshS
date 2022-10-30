@@ -1,16 +1,18 @@
 ﻿using System;
+using System.Threading.Tasks;
+
 namespace Tortics
 {
     public class Order
     {
         //дефолт конструктор, пока не трогать
-        public string Form = "";
-        public int Size = 0;
-        public string Taste = "";
-        public int Amount = 1;
-        public string Glaze = "";
+        string Form = "";
+        int Size = 0;
+        string Taste = "";
+        int Amount = 1;
+        string Glaze = "";
         public Decor Decor;
-
+        static char cur = 'к';
         static public void MenuL0()
         {
             var n = "\n  ";
@@ -24,7 +26,7 @@ namespace Tortics
             }
             Console.SetCursorPosition(2, 4 - 1);
             Console.Write($"Форма" + n +
-                $"Размер" + n +
+                $"Размер" + n + cur+
                 $"Вкус" + n +
                 $"Количество коржиков" + n +
                 $"Глазурь" + n +
@@ -32,13 +34,20 @@ namespace Tortics
                 $"Я закончил");
         }
 
-        public Order(int i)
+        public Order(int amount, string view, string taste, int size)
         {
-            Amount = i;
+            Form = view;
+            Amount = amount;
+            Taste = taste;
+            Size = size;
         }
-        public Order(Decor decor, int amount, string view, string color, int size)
+        public Order(Decor decor, int amount, string view, string taste, string color, int size, int DecAmount, string DecColor, string DecForm)
         {
-            Decor = new Decor(amount, view, color, size);
+            Amount = amount;
+            Form = view;
+            Taste = taste;
+            Size = size;
+            decor = new Decor(DecAmount, DecColor, DecForm);
         }
     }
 }

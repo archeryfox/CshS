@@ -12,7 +12,7 @@ namespace Tortics
         int Amount = 1;
         string Glaze = "";
         public Decor Decor;
-        static char cur = 'к';
+        static string cur = "(+)";
         static public void MenuL0()
         {
             var n = "\n  ";
@@ -26,7 +26,7 @@ namespace Tortics
             }
             Console.SetCursorPosition(2, 4 - 1);
             Console.Write($"Форма" + n +
-                $"Размер" + n + cur+
+                $"Размер" + cur+ n +
                 $"Вкус" + n +
                 $"Количество коржиков" + n +
                 $"Глазурь" + n +

@@ -21,14 +21,16 @@ namespace Cakes
         {
             return new Order(new Decor(), amount,  view, taste,  color, size, DecAmount, DecColor, DecForm);
         }
-        delegate void Deleg();
-        /// <summary>
-        ///  ghjddgjjdjd
-        /// </summary>
-        static Deleg ab = Order.MenuL0;
+       
         static void Main()
         {
+            Order.MenuL0();
+            /*
+             
+            Главное меню параметров
+             меню параметра 
             
+             */
         }
     }
 }

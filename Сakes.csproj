@@ -54,7 +54,11 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="auto commit.sh" />
     <None Include="MyClasses.cd" />
+    <None Include="pull.sh">
+      <SubType>Component</SubType>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Content Include="схема.png" />

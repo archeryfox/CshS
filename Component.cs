@@ -10,7 +10,7 @@ namespace Cakes
     public class Components
     {
         public string Detail;
-        private int Price;
+        readonly public int Price;
         static public List<List<string>> OrderLists = new List<List<string>>{ Order.Forms, Order.Sizes, Order.Glazes, Order.Tastes, Order.Amounts};
         public Components(string Detail)
         {

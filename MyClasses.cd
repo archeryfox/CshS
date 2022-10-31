@@ -15,9 +15,9 @@
     </TypeIdentifier>
   </Class>
   <Class Name="Cakes.Order">
-    <Position X="4.75" Y="0.75" Width="3" />
+    <Position X="5.25" Y="0.75" Width="3" />
     <TypeIdentifier>
-      <HashCode>AAAgAAAEAAAAgAQAABAAAACAQAIAAAAAAQAAAgEAAAA=</HashCode>
+      <HashCode>AQAgAAAEAQAAkAQAAJBAAACAQAIAgAAAAQAAAgEAAAA=</HashCode>
       <FileName>Order.cs</FileName>
     </TypeIdentifier>
   </Class>

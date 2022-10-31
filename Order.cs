@@ -14,11 +14,14 @@ namespace Cakes
         static string Taste = "";
         static int Amount = 1;
         static string Glaze = "";
+
+
         public string form = "";
         public int size = 0;
         public string taste = "";
         public int amount = 1;
         public string glaze = "";
+        public int Price = 0;
         static string cur = "(+)";
         static public List<string> Forms = new List<string>() 
         {"Стандарт - 100р", "Тыква - 90р", "Квадрат - 200р", "Рыба - 300р" };
@@ -34,7 +37,7 @@ namespace Cakes
 
         public static List<string> Glazes = new List<string>() 
         {"Розовая - 30р", "Тыква - 20р", "Майнкрафт - 35р", "Рыба - 50р"};
-        public static Order[] Box = new Order[1];
+        public static List<Order> Box = new List<Order>{ };
         static public void MenuL0()
         {
             var n = "\n  ";
@@ -52,19 +55,26 @@ namespace Cakes
                 $"Вкус" + n +
                 $"Количество коржиков" + n +
                 $"Глазурь" + n +
-                $"Я закончил");
+                $"Я закончил"+n);
+            Console.Write("Ваш заказ:");
+            if (Box.Count!=0)
+            {
+                Console.Write($" {Box[0].form}");
+
+            }
         }
 
         public Order()
         {
                     
         }
-        public Order(int amount = 0, string view ="", string taste="", int size=0)
+        public Order(int amount = 0, string view ="", string taste="", int size=0, int price = 0)
         {
             form = view;
             this.amount = amount;
             this.taste = taste;
             this.size = size;
+            this.Price = price;
         }
         public Order(Decor decor, int amount, string view, string taste, string color, int size, int DecAmount, string DecColor, string DecForm)
         {

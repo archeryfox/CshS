@@ -28,6 +28,7 @@ namespace Cakes
         static public int y = 2;
         static void Main()
         {
+            c();
             Console.CursorVisible = false;
             Order.MenuL0();
             while (true)
@@ -71,6 +72,7 @@ namespace Cakes
                     {
                         
                         int x = Order.Forms[y - 1].Length + 2;
+                        key = Console.ReadKey(true).Key;
                         switch (key, y)
                         {
                             case (ConsoleKey.UpArrow, not 1):
@@ -85,21 +87,29 @@ namespace Cakes
                                 Console.SetCursorPosition(x, yb111);
                                 Console.Write("    ");
                                 break;
+                            case (ConsoleKey.Escape, not 999):
+                                Cursor(key);
+                                break;
                             case (ConsoleKey.Enter, not 999):
-                                if (Order.Box != null)
+                                if (Order.Box.Count == 0)
                                 {
-                                    Order.Box[0].form = new Order(view: new Components(Order.Forms[y - 1]).Detail).v;
+
+                                    Order.Box.Add(new Order(  
+                                        view: new Components(Order.Forms[y - 1]).Detail, 
+                                        price: new Components(Order.Forms[y - 1]).Price)
+                                        );
                                 }
                                 else
                                 {
-                                    Order.Box[0].form = ;
+                                    Order.Box[0].form = new Components(Order.Forms[y - 1]).Detail;
+                                    Order.Box[0].Price += new Components(Order.Forms[y - 1]).Price;
                                 }
+                                Main();
                                 break;
                         }
 
                         Console.SetCursorPosition(Order.Forms[y-1].Length+2, y);
                         Console.Write(" <" + y);
-                        key = Console.ReadKey(true).Key;
                     }
 
                     break;

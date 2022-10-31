@@ -5,34 +5,79 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Calculator
+namespace Cakes
 {
-    internal class Component
+    public class Components
     {
         public string Detail;
         private int Price;
-        public Component(string Detail)
+        static public List<List<string>> OrderLists = new List<List<string>>{ Order.Forms, Order.Sizes, Order.Glazes, Order.Tastes, Order.Amounts};
+        public Components(string Detail)
         {
             this.Detail = Detail;
-            switch (Detail)
-            {
-                case "Стандарт":
-                    Price = 100;
-                    break;
-                case "Тыква":
+            //форма
+            if (OrderLists[0][0] == Detail)
+                Price = 100;
+            else if (OrderLists[0][1] == Detail)
                     Price = 90;
-                    break;
-                case "Рыба":
+                   
+            else if (OrderLists[0][2] == Detail)
                     Price = 300;
-                    break;
-                case "Квадрат":
+                
+            else if (OrderLists[0][3] == Detail)
                     Price = 200;
-                    break;
-            }
-        }
-    }
+                
+            //размеры
+            if (OrderLists[1][0] == Detail)
+                Price = 50;
 
-    public class Компонент
-    {
+            else if (OrderLists[1][1] == Detail)
+                Price = 70;
+
+            else if (OrderLists[1][2] == Detail)
+                Price = 100;
+            
+            else if (OrderLists[1][3] == Detail)
+                Price = 200;
+
+            //вкусы
+            if (OrderLists[2][0] == Detail)
+                Price = 60;
+
+            else if (OrderLists[2][1] == Detail)
+                Price = 70;
+
+            else if (OrderLists[2][2] == Detail)
+                Price = 100;
+
+            else if (OrderLists[2][3] == Detail)
+                Price = 200;
+
+            //коржи
+            if (OrderLists[3][0] == Detail)
+                Price = 60;
+
+            else if (OrderLists[3][1] == Detail)
+                Price = 70;
+
+            else if (OrderLists[3][2] == Detail)
+                Price = 100;
+
+            else if (OrderLists[3][3] == Detail)
+                Price = 200;
+
+
+            if (OrderLists[4][0] == Detail)
+                Price = 60;
+
+            else if (OrderLists[4][1] == Detail)
+                Price = 70;
+
+            else if (OrderLists[4][2] == Detail)
+                Price = 100;
+
+            else if (OrderLists[4][3] == Detail)
+                Price = 200;
+        }
     }
 }

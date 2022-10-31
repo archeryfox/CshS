@@ -1,9 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 
-namespace Tortics
+namespace Cakes
 {
     public class Order
     {
@@ -13,12 +14,27 @@ namespace Tortics
         static string Taste = "";
         static int Amount = 1;
         static string Glaze = "";
+        public string form = "";
+        public int size = 0;
+        public string taste = "";
+        public int amount = 1;
+        public string glaze = "";
         static string cur = "(+)";
-        public static List<string> Forms = new List<string>() {"Стандарт - 100р", "Тыква - 90р", "Квадрат - 200р", "Рыба - 300р" };
-        public static List<string> Sizes = new List<string>() {"Кекс - 50р", "Маленький - 70р", "Обычный - 100р", "Рыба - 200р"};
-        public static List<string> Tastes = new List<string>() { "Морковный - 60р", "Крем - 70р", "Шоколад - 100", "Клубника - 200р" };
-        public static List<string> Amounts = new List<string>() {"1 коржик 20р", "2 коржика - 40р", "3 кота 3 хвоста - 50р", "все 4 стихии - 80р"};
-        public static List<string> Glazes = new List<string>() {"Розовая - 30р", "Тыква - 20р", "Майнкрафт - 35р", "Рыба - 50р"};
+        static public List<string> Forms = new List<string>() 
+        {"Стандарт - 100р", "Тыква - 90р", "Квадрат - 200р", "Рыба - 300р" };
+
+        public static List<string> Sizes = new List<string>() 
+        {"Кекс - 50р", "Маленький - 70р", "Обычный - 100р", "Рыба - 200р"};
+
+        public static List<string> Tastes = new List<string>() 
+        { "Морковный - 60р", "Крем - 70р", "Шоколад - 100", "Клубника - 200р" };
+
+        public static List<string> Amounts = new List<string>()
+        {"1 коржик 20р", "2 коржика - 40р", "3 кота 3 хвоста - 50р", "все 4 стихии - 80р"};
+
+        public static List<string> Glazes = new List<string>() 
+        {"Розовая - 30р", "Тыква - 20р", "Майнкрафт - 35р", "Рыба - 50р"};
+        public static Order[] Box = new Order[1];
         static public void MenuL0()
         {
             var n = "\n  ";
@@ -39,13 +55,16 @@ namespace Tortics
                 $"Я закончил");
         }
 
-
-        public Order(int amount, string view, string taste, int size)
+        public Order()
         {
-            Form = view;
-            Amount = amount;
-            Taste = taste;
-            Size = size;
+                    
+        }
+        public Order(int amount = 0, string view ="", string taste="", int size=0)
+        {
+            form = view;
+            this.amount = amount;
+            this.taste = taste;
+            this.size = size;
         }
         public Order(Decor decor, int amount, string view, string taste, string color, int size, int DecAmount, string DecColor, string DecForm)
         {
@@ -55,6 +74,8 @@ namespace Tortics
             Size = size;
             decor = new Decor(DecAmount, DecColor, DecForm);
         }
+
+      
     }
 }
 

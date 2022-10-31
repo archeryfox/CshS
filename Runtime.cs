@@ -4,13 +4,14 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
-using Tortics;
 
 namespace Cakes
 {
     internal class Terminal
     {
-
+        delegate void del();
+        static del c = Console.Clear;
+        
         /// <summary>
         /// Более комфортный путь создания торта через конструктор
         /// </summary>
@@ -39,26 +40,72 @@ namespace Cakes
 
         private static void Cursor(ConsoleKey key)
         {
-            switch (key, y)
+            bool inSubMenu = false;
+            switch (key, y, inSubMenu)
             {
-                case (ConsoleKey.Escape, not 99):
+                case (ConsoleKey.Escape, not 99, false):
                     System.Environment.Exit(0);
                     break;
-                case (ConsoleKey.UpArrow, not 3):
+                case (ConsoleKey.UpArrow, not 3, false):
                     int yb = y;
                     y--;
                     Console.SetCursorPosition(0, yb);
                     Console.Write("  ");
                     break;
-                case (ConsoleKey.DownArrow, < 8):
+                case (ConsoleKey.DownArrow, < 8, false):
                     int yb1 = y;
                     y++;
                     Console.SetCursorPosition(0, yb1);
                     Console.Write("  ");
                     break;
+                case (ConsoleKey.Enter, 3,false):
+                    inSubMenu = true;
+                    c();
+                    Console.WriteLine("Выбор Формы");
+                    foreach (var punkt in Order.Forms)
+                    {
+                        Console.SetCursorPosition(2, Order.Forms.IndexOf(punkt) + 1);
+                        Console.WriteLine(punkt);
+                    }
+                    while(inSubMenu)
+                    {
+                        
+                        int x = Order.Forms[y - 1].Length + 2;
+                        switch (key, y)
+                        {
+                            case (ConsoleKey.UpArrow, not 1):
+                                int yb11 = y;
+                                y--;
+                                Console.SetCursorPosition(x, yb11);
+                                Console.Write("     ");
+                                break;
+                            case (ConsoleKey.DownArrow, < 4):
+                                int yb111 = y;
+                                y++;
+                                Console.SetCursorPosition(x, yb111);
+                                Console.Write("    ");
+                                break;
+                            case (ConsoleKey.Enter, not 999):
+                                if (Order.Box != null)
+                                {
+                                    Order.Box[0].form = new Order(view: new Components(Order.Forms[y - 1]).Detail).v;
+                                }
+                                else
+                                {
+                                    Order.Box[0].form = ;
+                                }
+                                break;
+                        }
+
+                        Console.SetCursorPosition(Order.Forms[y-1].Length+2, y);
+                        Console.Write(" <" + y);
+                        key = Console.ReadKey(true).Key;
+                    }
+
+                    break;
             }
             Console.SetCursorPosition(0, y);
-            Console.Write(">");
+            Console.Write(">"+ y);
 
         }
     }

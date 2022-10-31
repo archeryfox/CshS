@@ -1,30 +1,30 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1" MembersFormat="FullSignature">
   <Class Name="Tortics.Decor">
-    <Position X="0.5" Y="0.5" Width="3.5" />
+    <Position X="6.25" Y="1" Width="3" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAgAAAAAAAAACAAAABAAAAAAAAgAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAACAAAABAAAAAAAAgAAAAAA=</HashCode>
       <FileName>Decor.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="Tortics.Order">
-    <Position X="5.75" Y="0.5" Width="4.25" />
+  <Class Name="Calculator.Component">
+    <Position X="2.25" Y="5" Width="3" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAgAAAABAAAACAQAAAAQAAAAAAAgEAAAA=</HashCode>
+      <HashCode>AAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAA=</HashCode>
+      <FileName>Component.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Tortics.Order">
+    <Position X="2.25" Y="1" Width="3" />
+    <TypeIdentifier>
+      <HashCode>AAAgAAAEAAAAgAQAABAAAACAQAAAAAAAAQAAAgEAAAA=</HashCode>
       <FileName>Order.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Cakes.Terminal">
-    <Position X="0.5" Y="3.75" Width="5.5" />
-    <NestedTypes>
-      <Delegate Name="Cakes.Terminal.Deleg" Collapsed="true">
-        <TypeIdentifier>
-          <NewMemberFileName>Runtime.cs</NewMemberFileName>
-        </TypeIdentifier>
-      </Delegate>
-    </NestedTypes>
+    <Position X="6.25" Y="3.25" Width="3" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAACAAAAAAAAAAAAAAAAABAAAAAAABAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAQAAAAAAAAAAAAAAAAAABAAAAAAgBAAAAAA=</HashCode>
       <FileName>Runtime.cs</FileName>
     </TypeIdentifier>
   </Class>

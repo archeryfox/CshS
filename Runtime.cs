@@ -27,29 +27,30 @@ namespace Cakes
         static public int y = 2;
         static void Main()
         {
+            Console.CursorVisible = false;
             Order.MenuL0();
             while (true)
             {
                 ConsoleKey key = Console.ReadKey(true).Key;
                 Cursor(key);
             }
-           
+
         }
 
         private static void Cursor(ConsoleKey key)
         {
-            switch (key,y)
+            switch (key, y)
             {
                 case (ConsoleKey.Escape, not 99):
-                System.Environment.Exit(0);
-                break;
+                    System.Environment.Exit(0);
+                    break;
                 case (ConsoleKey.UpArrow, not 3):
                     int yb = y;
                     y--;
                     Console.SetCursorPosition(0, yb);
                     Console.Write("  ");
-                break;
-                case (ConsoleKey.DownArrow,< 9):
+                    break;
+                case (ConsoleKey.DownArrow, < 8):
                     int yb1 = y;
                     y++;
                     Console.SetCursorPosition(0, yb1);
@@ -57,7 +58,7 @@ namespace Cakes
                     break;
             }
             Console.SetCursorPosition(0, y);
-            Console.Write(">" + y);
+            Console.Write(">");
 
         }
     }

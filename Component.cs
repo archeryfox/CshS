@@ -14,7 +14,7 @@ namespace Cakes
         static public List<List<string>> OrderLists = new List<List<string>>{ Order.Forms, Order.Sizes, Order.Glazes, Order.Tastes, Order.Amounts};
         public Components(string Detail)
         {
-            this.Detail = Detail;
+            this.Detail = Detail+", ";
             //форма
             if (OrderLists[0][0] == Detail)
                 Price = 100;

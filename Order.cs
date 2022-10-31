@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.IO;
+using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 
@@ -17,27 +19,27 @@ namespace Cakes
 
 
         public string form = "";
-        public int size = 0;
+        public string size = "";
         public string taste = "";
-        public int amount = 1;
+        public string amount = "";
         public string glaze = "";
         public int Price = 0;
         static string cur = "(+)";
-        static public List<string> Forms = new List<string>() 
+        static public List<string> Forms = new List<string>()
         {"Стандарт - 100р", "Тыква - 90р", "Квадрат - 200р", "Рыба - 300р" };
 
-        public static List<string> Sizes = new List<string>() 
+        public static List<string> Sizes = new List<string>()
         {"Кекс - 50р", "Маленький - 70р", "Обычный - 100р", "Рыба - 200р"};
 
-        public static List<string> Tastes = new List<string>() 
+        public static List<string> Tastes = new List<string>()
         { "Морковный - 60р", "Крем - 70р", "Шоколад - 100", "Клубника - 200р" };
 
         public static List<string> Amounts = new List<string>()
         {"1 коржик 20р", "2 коржика - 40р", "3 кота 3 хвоста - 50р", "все 4 стихии - 80р"};
 
-        public static List<string> Glazes = new List<string>() 
+        public static List<string> Glazes = new List<string>()
         {"Розовая - 30р", "Тыква - 20р", "Майнкрафт - 35р", "Рыба - 50р"};
-        public static List<Order> Box = new List<Order>{ };
+        public static List<Order> Box = new List<Order> { };
         static public void MenuL0()
         {
             var n = "\n  ";
@@ -55,26 +57,44 @@ namespace Cakes
                 $"Вкус" + n +
                 $"Количество коржиков" + n +
                 $"Глазурь" + n +
-                $"Я закончил"+n);
-            Console.Write("Ваш заказ:");
-            if (Box.Count!=0)
+                $"Я закончил" + n);
+            if (Box.Count != 0)
             {
-                Console.Write($" {Box[0].form}");
+            Console.WriteLine($"С вас: {Box[0].Price}");
+                Console.Write("Ваш заказ:");
+                string order = $" {Box[0].form}{Box[0].size}{Box[0].taste}{Box[0].amount}{Box[0].glaze}";
+                Console.Write(order);
+                Console.SetCursorPosition(order.Length + "Ваш заказ:".Length-2, 10);
+                Console.Write("  ");
+                
+            }
+        }
+
+        public static void RenderCheck()
+        {
+            if (Box.Count != 0 )
+            {
+                string order = $" {Box[0].form}{Box[0].size}{Box[0].taste}{Box[0].amount}{Box[0].glaze}";
+                if (Box[0].form != "" && Box[0].size != "" && Box[0].taste != "" && Box[0].amount != "" && Box[0].glaze != "")
+                {
+                    File.AppendAllText(Environment.GetFolderPath(Environment.SpecialFolder.Desktop)+"\\заказ.txt", $"Заказ от {DateTime.Now}\r\n\tЗаказ: {order}\r\n\tЦена: {Box[0].Price} руб");
+                }
 
             }
         }
 
         public Order()
         {
-                    
+
         }
-        public Order(int amount = 0, string view ="", string taste="", int size=0, int price = 0)
+        public Order(string amount = "", string view = "", string taste = "", string size = "", int price = 0, string glaze = "")
         {
             form = view;
             this.amount = amount;
             this.taste = taste;
             this.size = size;
             this.Price = price;
+            this.glaze = glaze;
         }
         public Order(Decor decor, int amount, string view, string taste, string color, int size, int DecAmount, string DecColor, string DecForm)
         {
@@ -85,7 +105,7 @@ namespace Cakes
             decor = new Decor(DecAmount, DecColor, DecForm);
         }
 
-      
+
     }
 }
 

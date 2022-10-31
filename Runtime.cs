@@ -33,12 +33,7 @@ namespace Cakes
                 ConsoleKey key = Console.ReadKey(true).Key;
                 Cursor(key);
             }
-            /*
-             
-            Главное меню параметров
-                меню параметра 
-            
-             */
+           
         }
 
         private static void Cursor(ConsoleKey key)
@@ -60,16 +55,6 @@ namespace Cakes
                     Console.SetCursorPosition(0, yb1);
                     Console.Write("  ");
                     break;
-            }
-            
-            if (key == ConsoleKey.UpArrow && y != 3)
-            {
-                
-            }
-            if (key == ConsoleKey.DownArrow && y < 9)
-            {
-               
-
             }
             Console.SetCursorPosition(0, y);
             Console.Write(">" + y);

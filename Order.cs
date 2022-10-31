@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace Tortics
@@ -13,6 +14,7 @@ namespace Tortics
         string Glaze = "";
         public Decor Decor;
         static string cur = "(+)";
+        public static List<string> Forms = new List<string>() {"Стандарт", ""};
         static public void MenuL0()
         {
             var n = "\n  ";
@@ -26,13 +28,14 @@ namespace Tortics
             }
             Console.SetCursorPosition(2, 4 - 1);
             Console.Write($"Форма" + n +
-                $"Размер" + cur+ n +
+                $"Размер" + n +
                 $"Вкус" + n +
                 $"Количество коржиков" + n +
                 $"Глазурь" + n +
                 $"Декор" + n + 
                 $"Я закончил");
         }
+
 
         public Order(int amount, string view, string taste, int size)
         {

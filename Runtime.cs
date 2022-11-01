@@ -25,10 +25,10 @@ namespace Cakes
             return new Order(new Decor(), amount, view, taste, color, size, DecAmount, DecColor, DecForm);
         }
 
-        static public int y = 2;
+        static public int y = 3;
         static void Main()
         {
-            y = 3;
+            Console.Title = "Кафешка";
             c();
             Console.CursorVisible = false;
             Order.MenuL0();
@@ -49,10 +49,10 @@ namespace Cakes
             {
                 y++;
             }
-
             switch (key, y, inSubMenu)
             {
                 case (ConsoleKey.Escape, not 99, false):
+                    c();
                     System.Environment.Exit(0);
                     break;
                 case (ConsoleKey.UpArrow, not 3, false):
@@ -68,6 +68,7 @@ namespace Cakes
                     Console.Write("  ");
                     break;
                 case (ConsoleKey.Enter, 3, false):
+                    int yL0 = y;
                     inSubMenu = true;
                     c();
 
@@ -99,6 +100,7 @@ namespace Cakes
                                 Console.Write("    ");
                                 break;
                             case (ConsoleKey.Escape, not 999):
+                                y = 3;
                                 Main();
                                 break;
                             case (ConsoleKey.Enter, not 999):
@@ -116,7 +118,7 @@ namespace Cakes
                                     Order.Box[0].Price += new Components(Order.Forms[y - 1]).Price;
                                 }
                                 inSubMenu = false;
-                                y = 3;
+                                y = yL0;
                                 Main();
                                 break;
                         }
@@ -154,6 +156,7 @@ namespace Cakes
                                 Console.Write("    ");
                                 break;
                             case (ConsoleKey.Escape, not 999):
+                                y = 3;
                                 Main();
                                 break;
                             case (ConsoleKey.Enter, not 999):
@@ -264,6 +267,7 @@ namespace Cakes
                                 Console.Write("    ");
                                 break;
                             case (ConsoleKey.Escape, not 999):
+                                y = 3;
                                 Main();
                                 break;
                             case (ConsoleKey.Enter, not 999):
@@ -319,6 +323,7 @@ namespace Cakes
                                 Console.Write("    ");
                                 break;
                             case (ConsoleKey.Escape, not 999):
+                                y = 3;
                                 Main();
                                 break;
                             case (ConsoleKey.Enter, not 999):

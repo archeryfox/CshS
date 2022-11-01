@@ -5,6 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace Cakes
 {
@@ -75,10 +76,11 @@ namespace Cakes
             if (Box.Count != 0 )
             {
                 string order = $" {Box[0].form}{Box[0].size}{Box[0].taste}{Box[0].amount}{Box[0].glaze}";
-                if (Box[0].form != "" && Box[0].size != "" && Box[0].taste != "" && Box[0].amount != "" && Box[0].glaze != "")
-                {
-                    File.AppendAllText(Environment.GetFolderPath(Environment.SpecialFolder.Desktop)+"\\заказ.txt", $"Заказ от {DateTime.Now}\r\n\tЗаказ: {order}\r\n\tЦена: {Box[0].Price} руб");
-                }
+                //if (Box[0].form != "" && Box[0].size != "" && Box[0].taste != "" && Box[0].amount != "" && Box[0].glaze != "")
+                //{
+                Console.WriteLine("Saved");
+                    File.AppendAllText(AppDomain.CurrentDomain.BaseDirectory + "заказ.txt", $"Заказ от {DateTime.Now}\r\n\tЗаказ: {order}\r\n\tЦена: {Box[0].Price} руб\n");
+                //}
 
             }
         }

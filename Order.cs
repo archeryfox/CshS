@@ -73,6 +73,7 @@ namespace Cakes
                     File.AppendAllText(AppDomain.CurrentDomain.BaseDirectory + "заказ.txt", $"\nЗаказ от {DateTime.Now}\r\n\tЗаказ: {order}\r\n\tЦена: {Box[0].Price} руб\n");
                     Terminal.c();
                     Console.WriteLine("Ваш заказ оформлен");
+                    System.Environment.Exit(0);
                 }
                 else
                 {

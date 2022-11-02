@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.IO;
 using System.Linq;
 using System.Runtime.CompilerServices;
+using System.Threading;
 using System.Threading.Tasks;
 using static System.Net.Mime.MediaTypeNames;
 
@@ -70,13 +71,31 @@ namespace Cakes
         {
             if (Box.Count != 0 )
             {
-                string order = $" {Box[0].form}{Box[0].size}{Box[0].taste}{Box[0].amount}{Box[0].glaze}";
-                //if (Box[0].form != "" && Box[0].size != "" && Box[0].taste != "" && Box[0].amount != "" && Box[0].glaze != "")
-                //{
-                Console.WriteLine("Saved");
-                    File.AppendAllText(AppDomain.CurrentDomain.BaseDirectory + "заказ.txt", $"Заказ от {DateTime.Now}\r\n\tЗаказ: {order}\r\n\tЦена: {Box[0].Price} руб\n");
-                //}
-
+            string order = $" {Box[0].form}{Box[0].size}{Box[0].taste}{Box[0].amount}{Box[0].glaze}";
+                if (Box[0].form != "" && Box[0].size != "" && Box[0].taste != "" && Box[0].amount != "" && Box[0].glaze != "")
+                {
+                    File.AppendAllText(AppDomain.CurrentDomain.BaseDirectory + "заказ.txt", $"\nЗаказ от {DateTime.Now}\r\n\tЗаказ: {order}\r\n\tЦена: {Box[0].Price} руб\n");
+                }
+                else
+                {
+                    Console.SetCursorPosition(0, 11);
+                    Console.BackgroundColor = ConsoleColor.Red;
+                    Console.Write("Вы не выбрали все компоненты торта!!!");
+                    Console.BackgroundColor = ConsoleColor.Black;
+                    Thread.Sleep(5000);
+                    Console.SetCursorPosition(0, 11);
+                    Console.Write("\t\t\t\t\t\t\t");
+                }
+            }
+            else
+            {
+                Console.SetCursorPosition(0, 10);
+                Console.BackgroundColor = ConsoleColor.Red;
+                Console.Write("Вы не выбрали никакие компоненты торта!!!");
+                Console.BackgroundColor = ConsoleColor.Black;
+                Thread.Sleep(5000);
+                Console.SetCursorPosition(0, 10);
+                Console.Write("\t\t\t\t\t\t\t\t");
             }
         }
 

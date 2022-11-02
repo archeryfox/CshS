@@ -4,6 +4,7 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace Cakes
 {
@@ -65,6 +66,7 @@ namespace Cakes
                         Console.SetCursorPosition(2, Order.Forms.IndexOf(punkt) + 1);
                         Console.WriteLine(punkt);
                     }
+                    
                     Console.SetCursorPosition(Order.Forms[y - 1].Length + 2, y);
                     Console.Write(" <" + y);
                     while (inSubMenu)
@@ -117,79 +119,29 @@ namespace Cakes
                     inSubMenu = true;
                     c();
                     yL0 = y;
-
-                    Console.WriteLine("Выбор Размера");
-                    foreach (var punkt in Order.Sizes)
-                    {
-                        Console.SetCursorPosition(2, Order.Sizes.IndexOf(punkt) + 1);
-                        Console.WriteLine(punkt);
-                    }
-
-                    while (inSubMenu)
-                    {
-                        
-                        int x = Order.Sizes[y - 1].Length + 2;
-                        key = Console.ReadKey(true).Key;
-                        switch (key, y)
-                        {
-                            case (ConsoleKey.UpArrow, not 1):
-                                int yb11 = y;
-                                y--;
-                                Console.SetCursorPosition(x, yb11);
-                                Console.Write("     ");
-                                break;
-                            case (ConsoleKey.DownArrow, < 4):
-                                int yb111 = y;
-                                y++;
-                                Console.SetCursorPosition(x, yb111);
-                                Console.Write("    ");
-                                break;
-                            case (ConsoleKey.Escape, not 999):
-                                y = yL0;
-                                Main();
-                                break;
-                            case (ConsoleKey.Enter, not 999):
-                                if (Order.Box.Count == 0)
-                                {
-
-                                    Order.Box.Add(new Order(
-                                        size: new Components(Order.Sizes[y - 1]).Detail,
-                                        price: new Components(Order.Sizes[y - 1]).Price)
-                                        );
-                                }
-                                else
-                                {
-                                    Order.Box[0].size = new Components(Order.Sizes[y - 1]).Detail;
-                                    Order.Box[0].Price += new Components(Order.Sizes[y - 1]).Price;
-                                }
-                                inSubMenu = false;
-                                y = yL0;
-                                Main();
-                                break;
-                        }
-
-                        Console.SetCursorPosition(Order.Sizes[y - 1].Length + 2, y);
-                        Console.Write(" <" + y);
-                    }
-                    break;
-                case (ConsoleKey.Enter, 5, false):
-                    inSubMenu = true;
-                    c();
-                    yL0 = y;
-
                     Console.WriteLine("Выбор Вкусов");
                     foreach (var punkt in Order.Tastes)
                     {
                         Console.SetCursorPosition(2, Order.Tastes.IndexOf(punkt) + 1);
                         Console.WriteLine(punkt);
                     }
+                    y = 0;
+                    Console.SetCursorPosition(99, y);
                     while (inSubMenu)
                     {
-                        int x = Order.Tastes[y - 1].Length + 2;
+                        int x = 0;
+                        if (y <= Order.Tastes.Count && y != 0)
+                        {
+                            x = Order.Tastes[y - 1].Length + 2;
+                        }
+                        else if (y == 0)
+                        {
+                            x = 99;
+                        }
                         key = Console.ReadKey(true).Key;
                         switch (key, y)
                         {
-                            case (ConsoleKey.UpArrow, not 1):
+                            case (ConsoleKey.UpArrow, not 0 and not 1):
                                 int yb11 = y;
                                 y--;
                                 Console.SetCursorPosition(x, yb11);
@@ -205,27 +157,98 @@ namespace Cakes
                                 Main();
                                 break;
                             case (ConsoleKey.Enter, not 999):
-                                if (Order.Box.Count == 0)
+                                if (Order.Box.Count == 0 && y != 0)
                                 {
-
                                     Order.Box.Add(new Order(
                                         taste: new Components(Order.Tastes[y - 1]).Detail,
                                         price: new Components(Order.Tastes[y - 1]).Price)
                                         );
                                 }
-                                else
+                                else if (y != 0)
                                 {
                                     Order.Box[0].taste = new Components(Order.Tastes[y - 1]).Detail;
                                     Order.Box[0].Price += new Components(Order.Tastes[y - 1]).Price;
                                 }
                                 inSubMenu = false;
+                                //MessageBox.Show("Test");
                                 y = yL0;
                                 Main();
                                 break;
                         }
+                        if (y != 0)
+                        {
+                            Console.SetCursorPosition(Order.Tastes[y - 1].Length + 2, y);
+                            Console.Write(" <" + y);
+                        }
+                    }
+                    break;
 
+                //удачный блок:
+                case (ConsoleKey.Enter, 5, false):
+                    inSubMenu = true;
+                    c();
+                    yL0 = y;
+                    Console.WriteLine("Выбор Вкусов");
+                    foreach (var punkt in Order.Tastes)
+                    {
+                        Console.SetCursorPosition(2, Order.Tastes.IndexOf(punkt) + 1);
+                        Console.WriteLine(punkt);
+                    }
+                    y = 0;
+                    Console.SetCursorPosition(99, y);
+                    while (inSubMenu)
+                    {
+                        int x = 0;
+                        if (y <= Order.Tastes.Count && y !=0)
+                        {
+                            x = Order.Tastes[y-1].Length + 2;
+                        }
+                        else if (y == 0)
+                        {
+                            x = 99;
+                        }
+                        key = Console.ReadKey(true).Key;
+                        switch (key, y)
+                        {
+                            case (ConsoleKey.UpArrow, not 0 and not 1):
+                                int yb11 = y;
+                                y--;
+                                Console.SetCursorPosition(x, yb11);
+                                Console.Write("     ");
+                                break;
+                            case (ConsoleKey.DownArrow, < 4):
+                                int yb111 = y;
+                                y++;
+                                Console.SetCursorPosition(x, yb111);
+                                Console.Write("    ");
+                                break;
+                            case (ConsoleKey.Escape, not 999):
+                                Main();
+                                break;
+                            case (ConsoleKey.Enter, not 999):
+                                if (Order.Box.Count == 0 && y != 0)
+                                {
+                                    Order.Box.Add(new Order(
+                                        taste: new Components(Order.Tastes[y - 1]).Detail,
+                                        price: new Components(Order.Tastes[y - 1]).Price)
+                                        );
+                                }
+                                else if (y != 0)
+                                {
+                                    Order.Box[0].taste = new Components(Order.Tastes[y - 1]).Detail;
+                                    Order.Box[0].Price += new Components(Order.Tastes[y - 1]).Price;
+                                }
+                                inSubMenu = false;
+                                //MessageBox.Show("Test");
+                                y = yL0;
+                                Main();
+                                break;
+                        }
+                        if (y != 0)
+                        {
                         Console.SetCursorPosition(Order.Tastes[y - 1].Length + 2, y);
                         Console.Write(" <" + y);
+                        }
                     }
                     break;
                 case (ConsoleKey.Enter, 6, false):
@@ -240,7 +263,7 @@ namespace Cakes
                     }
                     while (inSubMenu)
                     {
-                        int x = Order.Amounts[y - 1].Length + 2;
+                        int x = Order.Amounts[y].Length + 2;
                         key = Console.ReadKey(true).Key;
                         switch (key, y)
                         {
@@ -287,21 +310,30 @@ namespace Cakes
                 case (ConsoleKey.Enter, 7, false):
                     inSubMenu = true;
                     c();
-                    Console.WriteLine("Выбор Глазури");
                     yL0 = y;
-                    foreach (var punkt in Order.Glazes)
+                    Console.WriteLine("Выбор Глазури");
+                    foreach (var punkt in Order.Tastes)
                     {
-                        Console.SetCursorPosition(2, Order.Glazes.IndexOf(punkt) + 1);
+                        Console.SetCursorPosition(2, Order.Tastes.IndexOf(punkt) + 1);
                         Console.WriteLine(punkt);
                     }
-                    y = 1;
+                    y = 0;
+                    Console.SetCursorPosition(99, y);
                     while (inSubMenu)
                     {
-                        int x = Order.Glazes[y - 1].Length + 2;
+                        int x = 0;
+                        if (y <= Order.Tastes.Count && y != 0)
+                        {
+                            x = Order.Tastes[y - 1].Length + 2;
+                        }
+                        else if (y == 0)
+                        {
+                            x = 99;
+                        }
                         key = Console.ReadKey(true).Key;
                         switch (key, y)
                         {
-                            case (ConsoleKey.UpArrow, not 1):
+                            case (ConsoleKey.UpArrow, not 0 and not 1):
                                 int yb11 = y;
                                 y--;
                                 Console.SetCursorPosition(x, yb11);
@@ -314,31 +346,32 @@ namespace Cakes
                                 Console.Write("    ");
                                 break;
                             case (ConsoleKey.Escape, not 999):
-                                y = 3;
                                 Main();
                                 break;
                             case (ConsoleKey.Enter, not 999):
-                                if (Order.Box.Count == 0)
+                                if (Order.Box.Count == 0 && y != 0)
                                 {
-
                                     Order.Box.Add(new Order(
-                                        glaze: new Components(Order.Glazes[y - 1]).Detail,
-                                        price: new Components(Order.Glazes[y - 1]).Price)
+                                        taste: new Components(Order.Tastes[y - 1]).Detail,
+                                        price: new Components(Order.Tastes[y - 1]).Price)
                                         );
                                 }
-                                else
+                                else if (y != 0)
                                 {
-                                    Order.Box[0].glaze = new Components(Order.Glazes[y - 1]).Detail;
-                                    Order.Box[0].Price += new Components(Order.Glazes[y - 1]).Price;
+                                    Order.Box[0].taste = new Components(Order.Tastes[y - 1]).Detail;
+                                    Order.Box[0].Price += new Components(Order.Tastes[y - 1]).Price;
                                 }
                                 inSubMenu = false;
-                                y = 3;
+                                //MessageBox.Show("Test");
+                                y = yL0;
                                 Main();
                                 break;
                         }
-
-                        Console.SetCursorPosition(Order.Glazes[y - 1].Length + 2, y);
-                        Console.Write(" <");
+                        if (y != 0)
+                        {
+                            Console.SetCursorPosition(Order.Tastes[y - 1].Length + 2, y);
+                            Console.Write(" <" + y);
+                        }
                     }
                     break;
                 case (ConsoleKey.Enter, 8, false):

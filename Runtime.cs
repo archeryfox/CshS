@@ -2,10 +2,10 @@
 
 namespace Cakes
 {
-    internal class Terminal
+    public class Terminal
     {
-        delegate void del();
-        static del c = Console.Clear;
+        public delegate void del();
+        static public del c = Console.Clear;
 
         static public int y = 3;
         static public int yL0 = y;

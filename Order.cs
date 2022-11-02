@@ -6,22 +6,18 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Threading;
 using System.Threading.Tasks;
-using static System.Net.Mime.MediaTypeNames;
+using System.Windows.Forms;
 
 namespace Cakes
 {
     public class Order
     {
-       
-
-
         public string form = "";
         public string size = "";
         public string taste = "";
         public string amount = "";
         public string glaze = "";
         public int Price = 0;
-        static string cur = "(+)";
         static public List<string> Forms = new List<string>()
         {"Стандарт - 100р", "Тыква - 90р", "Квадрат - 200р", "Рыба - 300р" };
 
@@ -75,6 +71,8 @@ namespace Cakes
                 if (Box[0].form != "" && Box[0].size != "" && Box[0].taste != "" && Box[0].amount != "" && Box[0].glaze != "")
                 {
                     File.AppendAllText(AppDomain.CurrentDomain.BaseDirectory + "заказ.txt", $"\nЗаказ от {DateTime.Now}\r\n\tЗаказ: {order}\r\n\tЦена: {Box[0].Price} руб\n");
+                    Terminal.c();
+                    Console.WriteLine("Ваш заказ оформлен");
                 }
                 else
                 {
@@ -97,6 +95,7 @@ namespace Cakes
                 Console.SetCursorPosition(0, 10);
                 Console.Write("\t\t\t\t\t\t\t\t");
             }
+            
         }
 
         public Order()

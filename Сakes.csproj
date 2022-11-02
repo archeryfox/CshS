@@ -50,7 +50,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Component.cs" />
-    <Compile Include="Decor.cs" />
     <Compile Include="Order.cs" />
     <Compile Include="Runtime.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

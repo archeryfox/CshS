@@ -12,20 +12,8 @@ namespace Cakes
         delegate void del();
         static del c = Console.Clear;
 
-        /// <summary>
-        /// Более комфортный путь создания торта через конструктор
-        /// </summary>
-        /// <param name="amount">Количество деталек декора</param>
-        /// <param name="view">Вид деталей</param>
-        /// <param name="color">Цвет деталей</param>
-        /// <param name="size">Введите размер деталек декора</param>
-        /// <returns>Объект сразу с декором</returns>
-        static Order OrderDecor(int DecAmount, string DecColor, string taste, string DecForm, int amount = 0, string view = "", string color = "", int size = 0)
-        {
-            return new Order(new Decor(), amount, view, taste, color, size, DecAmount, DecColor, DecForm);
-        }
-
         static public int y = 3;
+        static public int yL0;
         static void Main()
         {
             Console.Title = "Кафешка";
@@ -68,17 +56,15 @@ namespace Cakes
                     Console.Write("  ");
                     break;
                 case (ConsoleKey.Enter, 3, false):
-                    int yL0 = y;
+                    yL0 = y;
                     inSubMenu = true;
                     c();
-
                     Console.WriteLine("Выбор Формы");
                     foreach (var punkt in Order.Forms)
                     {
                         Console.SetCursorPosition(2, Order.Forms.IndexOf(punkt) + 1);
                         Console.WriteLine(punkt);
                     }
-                    y = 1;
                     Console.SetCursorPosition(Order.Forms[y - 1].Length + 2, y);
                     Console.Write(" <" + y);
                     while (inSubMenu)
@@ -100,7 +86,7 @@ namespace Cakes
                                 Console.Write("    ");
                                 break;
                             case (ConsoleKey.Escape, not 999):
-                                y = 3;
+                                y = yL0;
                                 Main();
                                 break;
                             case (ConsoleKey.Enter, not 999):
@@ -130,15 +116,18 @@ namespace Cakes
                 case (ConsoleKey.Enter, 4, false):
                     inSubMenu = true;
                     c();
+                    yL0 = y;
+
                     Console.WriteLine("Выбор Размера");
                     foreach (var punkt in Order.Sizes)
                     {
                         Console.SetCursorPosition(2, Order.Sizes.IndexOf(punkt) + 1);
                         Console.WriteLine(punkt);
                     }
-                    y = 1;
+
                     while (inSubMenu)
                     {
+                        
                         int x = Order.Sizes[y - 1].Length + 2;
                         key = Console.ReadKey(true).Key;
                         switch (key, y)
@@ -156,7 +145,7 @@ namespace Cakes
                                 Console.Write("    ");
                                 break;
                             case (ConsoleKey.Escape, not 999):
-                                y = 3;
+                                y = yL0;
                                 Main();
                                 break;
                             case (ConsoleKey.Enter, not 999):
@@ -174,7 +163,7 @@ namespace Cakes
                                     Order.Box[0].Price += new Components(Order.Sizes[y - 1]).Price;
                                 }
                                 inSubMenu = false;
-                                y = 3;
+                                y = yL0;
                                 Main();
                                 break;
                         }
@@ -186,13 +175,14 @@ namespace Cakes
                 case (ConsoleKey.Enter, 5, false):
                     inSubMenu = true;
                     c();
+                    yL0 = y;
+
                     Console.WriteLine("Выбор Вкусов");
                     foreach (var punkt in Order.Tastes)
                     {
                         Console.SetCursorPosition(2, Order.Tastes.IndexOf(punkt) + 1);
                         Console.WriteLine(punkt);
                     }
-                    y = 1;
                     while (inSubMenu)
                     {
                         int x = Order.Tastes[y - 1].Length + 2;
@@ -229,7 +219,7 @@ namespace Cakes
                                     Order.Box[0].Price += new Components(Order.Tastes[y - 1]).Price;
                                 }
                                 inSubMenu = false;
-                                y = 3;
+                                y = yL0;
                                 Main();
                                 break;
                         }
@@ -241,13 +231,13 @@ namespace Cakes
                 case (ConsoleKey.Enter, 6, false):
                     inSubMenu = true;
                     c();
+                    yL0 = y;
                     Console.WriteLine("Выбор количества коржей");
                     foreach (var punkt in Order.Amounts)
                     {
                         Console.SetCursorPosition(2, Order.Amounts.IndexOf(punkt) + 1);
                         Console.WriteLine(punkt);
                     }
-                    y = 1;
                     while (inSubMenu)
                     {
                         int x = Order.Amounts[y - 1].Length + 2;
@@ -285,7 +275,7 @@ namespace Cakes
                                     Order.Box[0].Price += new Components(Order.Amounts[y - 1]).Price;
                                 }
                                 inSubMenu = false;
-                                y = 3;
+                                y = yL0;
                                 Main();
                                 break;
                         }
@@ -298,6 +288,7 @@ namespace Cakes
                     inSubMenu = true;
                     c();
                     Console.WriteLine("Выбор Глазури");
+                    yL0 = y;
                     foreach (var punkt in Order.Glazes)
                     {
                         Console.SetCursorPosition(2, Order.Glazes.IndexOf(punkt) + 1);

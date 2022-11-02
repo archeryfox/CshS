@@ -11,12 +11,7 @@ namespace Cakes
 {
     public class Order
     {
-        //дефолт конструктор, пока не трогать
-        static string Form = "";
-        static int Size = 0;
-        static string Taste = "";
-        static int Amount = 1;
-        static string Glaze = "";
+       
 
 
         public string form = "";
@@ -98,14 +93,7 @@ namespace Cakes
             this.Price = price;
             this.glaze = glaze;
         }
-        public Order(Decor decor, int amount, string view, string taste, string color, int size, int DecAmount, string DecColor, string DecForm)
-        {
-            Amount = amount;
-            Form = view;
-            Taste = taste;
-            Size = size;
-            decor = new Decor(DecAmount, DecColor, DecForm);
-        }
+    
 
 
     }

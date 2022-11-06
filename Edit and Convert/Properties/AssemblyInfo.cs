@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // Общие сведения об этой сборке предоставляются следующим набором
 // набора атрибутов. Измените значения этих атрибутов для изменения сведений,
 // связанные с этой сборкой.
-[assembly: AssemblyTitle("Cakes")]
+[assembly: AssemblyTitle("Edit and Convert")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("Cakes")]
+[assembly: AssemblyProduct("Edit and Convert")]
 [assembly: AssemblyCopyright("Copyright ©  2022")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // Следующий GUID представляет идентификатор typelib, если этот проект доступен из модели COM
-[assembly: Guid("ae03bc3e-b765-4f02-9bc3-a6c9580f050c")]
+[assembly: Guid("69cf03d2-0250-48ca-baae-94f502d51bed")]
 
 // Сведения о версии сборки состоят из указанных ниже четырех значений:
 //

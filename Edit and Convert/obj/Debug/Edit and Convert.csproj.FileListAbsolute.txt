@@ -1,0 +1,15 @@
+D:\CshS\Edit and Convert\bin\Debug\Edit and Convert.exe.config
+D:\CshS\Edit and Convert\bin\Debug\Edit and Convert.exe
+D:\CshS\Edit and Convert\bin\Debug\Edit and Convert.pdb
+D:\CshS\Edit and Convert\obj\Debug\Edit and Convert.csproj.AssemblyReference.cache
+D:\CshS\Edit and Convert\obj\Debug\Edit and Convert.csproj.SuggestedBindingRedirects.cache
+D:\CshS\Edit and Convert\obj\Debug\Edit and Convert.csproj.CoreCompileInputs.cache
+D:\CshS\Edit and Convert\obj\Debug\Edit and Convert.exe
+D:\CshS\Edit and Convert\obj\Debug\Edit and Convert.pdb
+D:\CshS\Edit and Convert\bin\Debug\Newtonsoft.Json.Bson.dll
+D:\CshS\Edit and Convert\bin\Debug\Newtonsoft.Json.dll
+D:\CshS\Edit and Convert\bin\Debug\Newtonsoft.Json.pdb
+D:\CshS\Edit and Convert\bin\Debug\Newtonsoft.Json.xml
+D:\CshS\Edit and Convert\bin\Debug\Newtonsoft.Json.Bson.pdb
+D:\CshS\Edit and Convert\bin\Debug\Newtonsoft.Json.Bson.xml
+D:\CshS\Edit and Convert\obj\Debug\Edit and Convert.csproj.CopyComplete

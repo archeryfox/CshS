@@ -10,59 +10,81 @@ using System.Xml.Serialization;
 namespace Edit_and_Convert
 {
     /// <summary>
-    /// Класс, отвечающиий за сериализацию данных
+    /// Класс, отвечающиий за сериализацию данных. ДАННЫЕ В ТЕКСТ
     /// </summary>
     public static class Serial
     {
-        public static void TXTer(Model sender)
+        /// <summary>
+        /// Сериализация одного 
+        /// </summary>
+        /// <param name="sender"></param>
+        private static void TXTer(Model sender)
         {
-            string _r = File.ReadAllText(Program.path + "\\x.txt");
+            string _r = File.ReadAllText(Program.desktop + "\\x.txt");
             if (_r[0] != ' ')
             {
-                File.WriteAllText(Program.path + "\\x.txt", $"{sender.Name}\n{sender.Description}\n{sender.Field1}");
+                File.WriteAllText(Program.desktop + "\\x.txt", $"{sender.Name}\n{sender.Description}\n{sender.Field}");
             }
             else
             {
-                File.AppendAllText(Program.path + "\\x.txt", $"\n{sender.Name}\n{sender.Description}\n{sender.Field1}");
+                File.AppendAllText(Program.desktop + "\\x.txt", $"\n{sender.Name}\n{sender.Description}\n{sender.Field}");
             }
         }
-        public static void TXTer(List<Model> sender)
+        private static void TXTer(List<Model> sender)
         {
             var i = 0;
             foreach (var item in sender)
             {
                 if (i == 0)
                 {
-                    File.WriteAllText(Program.path + "\\x.txt", $"{item.Name}\n{item.Description}\n{item.Field1}");
+                    File.WriteAllText(Program.desktop + "\\x.txt", $"{item.Name}\n{item.Description}\n{item.Field}");
                 }
                 else 
                 {
-                    File.AppendAllText(Program.path + "\\x.txt", $"\n{item.Name}\n{item.Description}\n{item.Field1}");
+                    File.AppendAllText(Program.desktop + "\\x.txt", $"\n{item.Name}\n{item.Description}\n{item.Field }");
                 }
                 i++;
             }
 
         }
-        public static void JSONer(Model sender)
+        private static void JSONer(Model sender)
         {
-           File.AppendAllText(Program.path + "\\x.json", JsonConvert.SerializeObject(sender));
+           File.AppendAllText(Program.desktop + "\\x.json", JsonConvert.SerializeObject(sender));
         }
-        public static void JSONer(List<Model> sender)
+        private static void JSONer(List<Model> sender)
         {
-            File.WriteAllText(Program.path + "\\x.json", JsonConvert.SerializeObject(sender));
+            File.WriteAllText(Program.desktop + "\\x.json", JsonConvert.SerializeObject(sender));
         }
-        public static void XMLer(List<Model> sender)
+        private static void XMLer(List<Model> sender)
         {
-            using (var f = new FileStream(Program.path + "\\x.xml", FileMode.OpenOrCreate))
+            File.WriteAllText(Program.desktop + "\\x.xml", "");
+            using (var f = new FileStream(Program.desktop + "\\x.xml", FileMode.OpenOrCreate))
             {
                new XmlSerializer(typeof(List<Model>)).Serialize(f, sender);
             }
         }
         public static void XMLer(Model sender)
         {
-            using (var f = new FileStream(Program.path + "\\x.xml", FileMode.OpenOrCreate))
+            using (var f = new FileStream(Program.desktop + "\\x.xml", FileMode.OpenOrCreate))
             {
                 new XmlSerializer(typeof(Model)).Serialize(f, sender);
+            }
+        }
+        public static void Export(List<Model> sender)
+        {
+            switch (Program.format.ToLower()
+                .Replace(" ", "")
+                .Replace(".", ""))
+            {
+                case "txt":
+                    TXTer(sender);
+                    break;
+                case "json":
+                    JSONer(sender);
+                    break;
+                case "xml": 
+                    XMLer(sender);
+                    break;
             }
         }
     }

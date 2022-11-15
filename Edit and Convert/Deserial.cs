@@ -10,27 +10,57 @@ using Newtonsoft.Json.Converters;
 namespace Edit_and_Convert
 {
     /// <summary>
-    /// Класс, отвечающиий за десериализацию данных
+    /// Класс, отвечающиий за десериализацию данных. ИЗ ТЕКСТА В ДАННЫЕ
     /// </summary>
     public static class Deserial
     {
-        public static void TXTer()
+         static void TXTer()
         {
-            Console.WriteLine(File.ReadAllText(Program.path + "\\x.txt"));
+            Console.WriteLine(File.ReadAllText(Program.desktop + "\\x.txt"));
         }
-        public static object JSONer()
-        {
-            using (var f = new FileStream(Program.path + "\\x.json", FileMode.Open))
+         static List<Model> JSONer()
+        { 
+            List<Model> _arj = JsonConvert.DeserializeObject<List<Model>>(
+                File.ReadAllText(Program.desktop + "\\x.json"));
+            foreach (var item in _arj)
             {
-                return JsonConvert.DeserializeObject<List<Model>>(Program.path);
+                Console.WriteLine($"{item.Name}\n{item.Description}\n{item.Field}");
             }
+            return _arj;
         }
-        public static void XMLer(List<Model> sender)
+         static List<Model> XMLer()
         {
-            using (var f = new FileStream(Program.path + "\\x.xml", FileMode.Open))
+            using (var j = new FileStream(Program.desktop + "\\x.xml", FileMode.Open))
             {
-                new XmlSerializer(typeof(List<Model>)).Deserialize(f);
+                List<Model> _arx = (List<Model>)new XmlSerializer(typeof(List<Model>)).Deserialize(j);
+                foreach (var item in _arx)
+                {
+                    Console.WriteLine($"{item.Name}\n{item.Description}\n{item.Field}");
+                }
+                return _arx;
             }
+
+        }
+        /// <summary>
+        /// Вытягивание объектов из файла\ов
+        /// </summary>
+        public static List<Model> Import()
+        {
+            switch (Program.format.ToLower()
+                .Replace(" ", "")
+                .Replace(".", ""))
+            {
+                case "txt":
+                   TXTer();
+                    break;
+
+                case "json":
+                    return JSONer();
+
+                case "xml":
+                    return XMLer();
+            }
+            return new List<Model>();
         }
     }
 }

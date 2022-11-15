@@ -18,7 +18,7 @@ namespace Edit_and_Convert
         /// <summary>
         /// Дефолтный путь
         /// </summary>
-        public static string path = $@"{Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory)}";
+        public static string desktop = $@"{Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory)}";
         /// <summary>
         /// Формат файла
         /// </summary>
@@ -44,15 +44,37 @@ namespace Edit_and_Convert
         static void Main(string[] args)
         {
             var a = new Model("Ростик", "кv4", 854386);
-            var v = new Model("Влад", "бордовый", 12);
+            var v = new Model("sd", "бордовый", 12);
             arsd.Add(a);
             arsd.Add(v);
-            Serial.XMLer(arsd);
-            Serial.JSONer(arsd);
-            Serial.TXTer(arsd);
-            Console.WriteLine(path);
-            Deserial.TXTer();
+            while (format != "txt" && format != "json" && format != "xml")
+            {
+                Console.WriteLine("Введите формат.");
+                format = Console.ReadLine();
+            }
+            Console.WriteLine("1 - ser 2.. des");
+            if (Console.ReadLine() == "1")
+            {
+            Serial.Export(arsd);
+            }
+            else
+            {
+                if (File.Exists(desktop+$"\\x.{format}"))
+                {
+                    Deserial.Import();
+                }
+                else
+                {
+                    Console.WriteLine($"Файл {desktop + $"\\x.{format}"} не существует!!!");
+                }
+            }
+            format = "";
+            arsd.Clear();   
+            Main(args);
+            
         }
 
+        /// <remarks></remarks>
+        public static string InpFormat;
     }
 }

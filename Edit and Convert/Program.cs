@@ -44,20 +44,30 @@ namespace Edit_and_Convert
         static void Main(string[] args)
         {
             Console.InputEncoding = Encoding.Unicode;
-            var a = new Model("Ростик", "лиса", 854386);
-            var v = new Model("Имя", "Описание", 12);
-            arsd.Add(a);
-            arsd.Add(v);
-            
-            Console.WriteLine("1 - ser 2.. des");
+            Console.WriteLine("Нажмите F1 - сохранить файл, F2 - Загрузить файл");
             ConsoleKey consoleKey = Console.ReadKey(true).Key;
-            if (consoleKey == ConsoleKey.D1)
+            if (consoleKey == ConsoleKey.Escape)
+            {
+                Environment.Exit(0);
+            }
+            if (consoleKey == ConsoleKey.F1)
             {
                 Serial.Export(arsd);
             }
-            else if (consoleKey == ConsoleKey.D2)
+            if (consoleKey == ConsoleKey.F2)
             {
-                way = Console.ReadLine().Replace("\"", "");
+                Console.WriteLine("Введите путь до файла:");
+                try
+                {
+                    way = Console.ReadLine().Replace("\"", "");
+                }
+                catch (Exception)
+                {
+                    Console.ForegroundColor= ConsoleColor.Red;
+                    Console.WriteLine("Повторите ввод пути, путь некоректен");
+                    Console.ForegroundColor= ConsoleColor.White;
+                    Console.ReadKey();
+                }
                 if (File.Exists(way))
                 {
                     Deserial.Import();
@@ -68,9 +78,7 @@ namespace Edit_and_Convert
                 }
             }
             format = "";
-            arsd.Clear();
             Main(args);
-
         }
     }
 }

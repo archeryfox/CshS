@@ -5,6 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 using System.Xml.Linq;
 using System.Xml.Serialization;
 
@@ -30,7 +31,6 @@ namespace Edit_and_Convert
                 }
                 i++;
             }
-
         }
         private static void JSONer(List<Model> sender)
         {
@@ -47,7 +47,16 @@ namespace Edit_and_Convert
         public static void Export(List<Model> sender)
         {
             Console.WriteLine("Введите путь папки, в которой будет лежать файл:");
-            Program.way = $@"{Console.ReadLine()}";
+            try
+            {
+                Program.way = $@"{Console.ReadLine()}";
+            }
+            catch (Exception)
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("Повторите ввод пути, путь некоректен");
+                Console.ReadKey();
+            }
             Console.Write("Введите имя файла: ");
             Program.name = Console.ReadLine();
             var format = Program.format;

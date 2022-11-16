@@ -18,7 +18,7 @@ namespace Edit_and_Convert
         /// <summary>
         /// Дефолтный путь
         /// </summary>
-        public static string desktop = $@"{Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory)}";
+        public static string way = $@"{Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory)}";
         /// <summary>
         /// Формат файла
         /// </summary>
@@ -26,7 +26,7 @@ namespace Edit_and_Convert
         /// <summary>
         /// Имя файла
         /// </summary>
-        public static string name;
+        public static string name = "";
         static List<Model> arsd = Model.somelist;
 
         delegate void del();
@@ -43,38 +43,34 @@ namespace Edit_and_Convert
 
         static void Main(string[] args)
         {
-            var a = new Model("Ростик", "кv4", 854386);
-            var v = new Model("sd", "бордовый", 12);
+            Console.InputEncoding = Encoding.Unicode;
+            var a = new Model("Ростик", "лиса", 854386);
+            var v = new Model("Имя", "Описание", 12);
             arsd.Add(a);
             arsd.Add(v);
-            while (format != "txt" && format != "json" && format != "xml")
-            {
-                Console.WriteLine("Введите формат.");
-                format = Console.ReadLine();
-            }
+            
             Console.WriteLine("1 - ser 2.. des");
-            if (Console.ReadLine() == "1")
+            ConsoleKey consoleKey = Console.ReadKey(true).Key;
+            if (consoleKey == ConsoleKey.D1)
             {
-            Serial.Export(arsd);
+                Serial.Export(arsd);
             }
-            else
+            else if (consoleKey == ConsoleKey.D2)
             {
-                if (File.Exists(desktop+$"\\x.{format}"))
+                way = Console.ReadLine().Replace("\"", "");
+                if (File.Exists(way))
                 {
                     Deserial.Import();
                 }
                 else
                 {
-                    Console.WriteLine($"Файл {desktop + $"\\x.{format}"} не существует!!!");
+                    Console.WriteLine($"Файл {way} не существует!!!");
                 }
             }
             format = "";
-            arsd.Clear();   
+            arsd.Clear();
             Main(args);
-            
-        }
 
-        /// <remarks></remarks>
-        public static string InpFormat;
+        }
     }
 }

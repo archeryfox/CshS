@@ -14,23 +14,53 @@ namespace Edit_and_Convert
     /// </summary>
     public static class Deserial
     {
-         static void TXTer()
+        static List<Model> TXTer()
         {
-            Console.WriteLine(File.ReadAllText(Program.desktop + "\\x.txt"));
+            List<Model> list = new List<Model>();
+            if (File.Exists(Program.way))
+            {
+                var mslist = Model.somelist;
+                string[] str = File.ReadAllLines(Program.way);
+                for (int i = 0; i < Math.Truncate((double)str.Length / 3); i++)
+                {
+                    string name = "";
+                    string des = "";
+                    string f = "";
+                    if (i == 0)
+                    {
+                        name = str[0];
+                        des = str[1];
+                        f = str[2];
+                    }
+                    else
+                    {
+                        name = str[3 * i];
+                        des = str[3 * i + 1];
+                        f = str[3 * i + 2];
+                    }
+                    list.Add(new Model(name, des, f));
+                }
+            }
+            foreach (var item in list)
+            {
+                Console.WriteLine(item.Name);
+            }
+            Model.somelist = list;
+            return list;
         }
-         static List<Model> JSONer()
-        { 
+        static List<Model> JSONer()
+        {
             List<Model> _arj = JsonConvert.DeserializeObject<List<Model>>(
-                File.ReadAllText(Program.desktop + "\\x.json"));
+                File.ReadAllText(Program.way));
             foreach (var item in _arj)
             {
                 Console.WriteLine($"{item.Name}\n{item.Description}\n{item.Field}");
             }
             return _arj;
         }
-         static List<Model> XMLer()
+        static List<Model> XMLer()
         {
-            using (var j = new FileStream(Program.desktop + "\\x.xml", FileMode.Open))
+            using (var j = new FileStream(Program.way, FileMode.Open))
             {
                 List<Model> _arx = (List<Model>)new XmlSerializer(typeof(List<Model>)).Deserialize(j);
                 foreach (var item in _arx)
@@ -41,24 +71,23 @@ namespace Edit_and_Convert
             }
 
         }
+
         /// <summary>
         /// Вытягивание объектов из файла\ов
         /// </summary>
         public static List<Model> Import()
         {
-            switch (Program.format.ToLower()
-                .Replace(" ", "")
-                .Replace(".", ""))
+            if (Program.way.Contains(".txt"))
             {
-                case "txt":
-                   TXTer();
-                    break;
-
-                case "json":
-                    return JSONer();
-
-                case "xml":
-                    return XMLer();
+                return TXTer();
+            }
+            if (Program.way.Contains(".json"))
+            {
+                return JSONer();
+            }
+            if (Program.way.Contains(".xml"))
+            {
+                return XMLer();
             }
             return new List<Model>();
         }

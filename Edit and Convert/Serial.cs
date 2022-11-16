@@ -5,6 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 using System.Xml.Serialization;
 
 namespace Edit_and_Convert
@@ -14,22 +15,6 @@ namespace Edit_and_Convert
     /// </summary>
     public static class Serial
     {
-        /// <summary>
-        /// Сериализация одного 
-        /// </summary>
-        /// <param name="sender"></param>
-        private static void TXTer(Model sender)
-        {
-            string _r = File.ReadAllText(Program.desktop + "\\x.txt");
-            if (_r[0] != ' ')
-            {
-                File.WriteAllText(Program.desktop + "\\x.txt", $"{sender.Name}\n{sender.Description}\n{sender.Field}");
-            }
-            else
-            {
-                File.AppendAllText(Program.desktop + "\\x.txt", $"\n{sender.Name}\n{sender.Description}\n{sender.Field}");
-            }
-        }
         private static void TXTer(List<Model> sender)
         {
             var i = 0;
@@ -37,42 +22,41 @@ namespace Edit_and_Convert
             {
                 if (i == 0)
                 {
-                    File.WriteAllText(Program.desktop + "\\x.txt", $"{item.Name}\n{item.Description}\n{item.Field}");
+                    File.WriteAllText(Program.way + $"\\{Program.name}.txt", $"{item.Name}\n{item.Description}\n{item.Field}");
                 }
-                else 
+                else
                 {
-                    File.AppendAllText(Program.desktop + "\\x.txt", $"\n{item.Name}\n{item.Description}\n{item.Field }");
+                    File.AppendAllText(Program.way + $"\\{Program.name}.txt", $"\n{item.Name}\n{item.Description}\n{item.Field}");
                 }
                 i++;
             }
 
         }
-        private static void JSONer(Model sender)
-        {
-           File.AppendAllText(Program.desktop + "\\x.json", JsonConvert.SerializeObject(sender));
-        }
         private static void JSONer(List<Model> sender)
         {
-            File.WriteAllText(Program.desktop + "\\x.json", JsonConvert.SerializeObject(sender));
+            File.WriteAllText(Program.way + $"\\{Program.name}.json", JsonConvert.SerializeObject(sender));
         }
         private static void XMLer(List<Model> sender)
         {
-            File.WriteAllText(Program.desktop + "\\x.xml", "");
-            using (var f = new FileStream(Program.desktop + "\\x.xml", FileMode.OpenOrCreate))
+            File.WriteAllText(Program.way + $"\\{Program.name}.xml", "");
+            using (var f = new FileStream(Program.way + $"\\{Program.name}.xml", FileMode.OpenOrCreate))
             {
-               new XmlSerializer(typeof(List<Model>)).Serialize(f, sender);
-            }
-        }
-        public static void XMLer(Model sender)
-        {
-            using (var f = new FileStream(Program.desktop + "\\x.xml", FileMode.OpenOrCreate))
-            {
-                new XmlSerializer(typeof(Model)).Serialize(f, sender);
+                new XmlSerializer(typeof(List<Model>)).Serialize(f, sender);
             }
         }
         public static void Export(List<Model> sender)
         {
-            switch (Program.format.ToLower()
+            Console.WriteLine("Введите путь папки, в которой будет лежать файл:");
+            Program.way = $@"{Console.ReadLine()}";
+            Console.Write("Введите имя файла: ");
+            Program.name = Console.ReadLine();
+            var format = Program.format;
+            while (format != "txt" && format != "json" && format != "xml")
+            {
+                Console.WriteLine("Введите формат.");
+                format = Console.ReadLine();
+            }
+            switch (format.ToLower()
                 .Replace(" ", "")
                 .Replace(".", ""))
             {
@@ -82,10 +66,12 @@ namespace Edit_and_Convert
                 case "json":
                     JSONer(sender);
                     break;
-                case "xml": 
+                case "xml":
                     XMLer(sender);
                     break;
             }
+            Console.WriteLine($"Ваш файл успешно сохранён в {Program.way}{Program.name}" +
+                $".{format.ToLower().Replace(" ", "").Replace(".", "")}!");
         }
     }
 }

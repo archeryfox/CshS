@@ -19,10 +19,12 @@ namespace Edit_and_Convert
         private static void TXTer(List<Model> sender)
         {
             var i = 0;
+
             foreach (var item in sender)
             {
                 if (i == 0)
                 {
+
                     File.WriteAllText(Program.way + $"\\{Program.name}.txt", $"{item.Name}\n{item.Description}\n{item.Field}");
                 }
                 else
@@ -39,7 +41,7 @@ namespace Edit_and_Convert
         private static void XMLer(List<Model> sender)
         {
             File.WriteAllText(Program.way + $"\\{Program.name}.xml", "");
-            using (var f = new FileStream(Program.way + $"\\{Program.name}.xml", FileMode.OpenOrCreate))
+            using (var f = new FileStream(Program.way.Replace("\"", "") + $"\\{Program.name}.xml", FileMode.OpenOrCreate))
             {
                 new XmlSerializer(typeof(List<Model>)).Serialize(f, sender);
             }
@@ -49,7 +51,14 @@ namespace Edit_and_Convert
             Console.WriteLine("Введите путь папки, в которой будет лежать файл:");
             try
             {
-                Program.way = $@"{Console.ReadLine()}";
+                do
+                {
+                    Program.way = $@"{Console.ReadLine()}";
+                    if (Program.way.Contains("."))
+                    {
+                        Console.WriteLine("Вы не можете сериализовать в файл! Укажите папку");
+                    }
+                } while (Program.way.Contains("."));
             }
             catch (Exception)
             {
@@ -57,6 +66,7 @@ namespace Edit_and_Convert
                 Console.WriteLine("Повторите ввод пути, путь некоректен");
                 Console.ReadKey();
             }
+
             Console.Write("Введите имя файла: ");
             Program.name = Console.ReadLine();
             var format = Program.format;
@@ -79,8 +89,11 @@ namespace Edit_and_Convert
                     XMLer(sender);
                     break;
             }
-            Console.WriteLine($"Ваш файл успешно сохранён в {Program.way}{Program.name}" +
+            Console.WriteLine($"Ваш файл успешно сохранён в {Program.way}\\{Program.name}" +
                 $".{format.ToLower().Replace(" ", "").Replace(".", "")}!");
+
+            Console.WriteLine("\nНажмите любую клавишу для следующей операции");
+            Console.ReadKey(true);
         }
     }
 }

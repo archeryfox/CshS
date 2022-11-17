@@ -18,16 +18,12 @@ namespace Edit_and_Convert
         /// <summary>
         /// Дефолтный путь
         /// </summary>
-        public static string way = $@"{Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory)}";
-        /// <summary>
-        /// Формат файла
-        /// </summary>
+        public static string way = $@"";
         public static string format;
         /// <summary>
         /// Имя файла
         /// </summary>
         public static string name = "";
-        static List<Model> arsd = Model.somelist;
 
         delegate void del();
 
@@ -43,6 +39,7 @@ namespace Edit_and_Convert
 
         static void Main(string[] args)
         {
+            c();
             Console.InputEncoding = Encoding.Unicode;
             Console.WriteLine("Нажмите F1 - сохранить файл, F2 - Загрузить файл");
             ConsoleKey consoleKey = Console.ReadKey(true).Key;
@@ -50,22 +47,47 @@ namespace Edit_and_Convert
             {
                 Environment.Exit(0);
             }
-            if (consoleKey == ConsoleKey.F1)
+            else if (consoleKey == ConsoleKey.F1)
             {
-                Serial.Export(arsd);
+                if (Model.somelist.Count == 0)
+                {
+                    Console.WriteLine("Нет загруженного шаблона, загрузите какой либо шаблон чтобы его скопировать!");
+                    Console.WriteLine("Всё равно экспортировать пустой файл?(Y/N)");    
+                    ConsoleKey consoleKey1 = Console.ReadKey(true).Key;
+                    if (consoleKey1 == ConsoleKey.Y)
+                    {
+                        Serial.Export(Model.somelist);
+                    }
+                    else if (consoleKey1 == ConsoleKey.N)
+                    {
+                        Main(args);
+                    }
+                }
+                else
+                {
+                    Serial.Export(Model.somelist);
+                }
+
             }
-            if (consoleKey == ConsoleKey.F2)
+            else if (consoleKey == ConsoleKey.F2)
             {
-                Console.WriteLine("Введите путь до файла:");
+                Console.WriteLine("Перетащите файл или Введите путь до файла:");
                 try
                 {
-                    way = Console.ReadLine().Replace("\"", "");
+                    do
+                    {
+                        Program.way = $@"{Console.ReadLine().Replace("\"", "")}";
+                        if (!Program.way.Contains("."))
+                        {
+                            Console.WriteLine("Вы не можете десериализовать папку! Укажите файл");
+                        }
+                    } while (!Program.way.Contains("."));
                 }
                 catch (Exception)
                 {
-                    Console.ForegroundColor= ConsoleColor.Red;
+                    Console.ForegroundColor = ConsoleColor.Red;
                     Console.WriteLine("Повторите ввод пути, путь некоректен");
-                    Console.ForegroundColor= ConsoleColor.White;
+                    Console.ForegroundColor = ConsoleColor.White;
                     Console.ReadKey();
                 }
                 if (File.Exists(way))
@@ -76,6 +98,10 @@ namespace Edit_and_Convert
                 {
                     Console.WriteLine($"Файл {way} не существует!!!");
                 }
+            }
+            else
+            {
+                c();
             }
             format = "";
             Main(args);

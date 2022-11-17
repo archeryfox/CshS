@@ -28,6 +28,10 @@ namespace Edit_and_Convert
                     string f = "";
                     if (i == 0)
                     {
+                        if (str[0] == "")
+                        {
+                            Console.WriteLine("Файл пуст!");
+                        }
                         name = str[0];
                         des = str[1];
                         f = str[2];
@@ -46,16 +50,23 @@ namespace Edit_and_Convert
                 Console.WriteLine(item.Name);
             }
             Model.somelist = list;
+            slep();
             return list;
         }
         static List<Model> JSONer()
         {
             List<Model> _arj = JsonConvert.DeserializeObject<List<Model>>(
                 File.ReadAllText(Program.way));
+            if (_arj.Count == 0)
+            {
+                Console.WriteLine("Файл пуст!");
+            }
             foreach (var item in _arj)
             {
                 Console.WriteLine($"{item.Name}\n{item.Description}\n{item.Field}");
             }
+            Model.somelist = _arj;
+            slep();
             return _arj;
         }
         static List<Model> XMLer()
@@ -63,12 +74,17 @@ namespace Edit_and_Convert
             using (var j = new FileStream(Program.way, FileMode.Open))
             {
                 List<Model> _arx = (List<Model>)new XmlSerializer(typeof(List<Model>)).Deserialize(j);
+                if (_arx.Count == 0)
+                    Console.WriteLine("Файл пуст");
                 foreach (var item in _arx)
                 {
                     Console.WriteLine($"{item.Name}\n{item.Description}\n{item.Field}");
                 }
+                Model.somelist = _arx;
+                slep();
                 return _arx;
             }
+
 
         }
 
@@ -90,6 +106,12 @@ namespace Edit_and_Convert
                 return XMLer();
             }
             return new List<Model>();
+        }
+
+        private static void slep()
+        {
+            Console.WriteLine("\nНажмите любую клавишу для следующей операции");
+            Console.ReadKey(true);
         }
     }
 }

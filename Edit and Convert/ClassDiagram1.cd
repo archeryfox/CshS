@@ -1,17 +1,35 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1" MembersFormat="FullSignature">
+  <Class Name="Edit_and_Convert.Deserial">
+    <Position X="6.5" Y="1" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAABAAAAIAAAAAAAAAAAAACEACAAAAAAAAA=</HashCode>
+      <FileName>Deserial.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Edit_and_Convert.Editor">
+    <Position X="11.5" Y="1" Width="3.25" />
+    <NestedTypes>
+      <Delegate Name="Edit_and_Convert.Editor._delegate" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Editor.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Delegate>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AAIAAAAAAAQAAQAgAAAAAAAAAAAAAACAACBgAAAQAAA=</HashCode>
+      <FileName>Editor.cs</FileName>
+    </TypeIdentifier>
+  </Class>
   <Class Name="Edit_and_Convert.Model">
-    <Position X="5" Y="0.5" Width="1.5" />
+    <Position X="2.75" Y="1" Width="3.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAgAAAAAAAAAEQAAAAAAAAAAAAAAAAAgAA=</HashCode>
       <FileName>Model.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Edit_and_Convert.Program">
-    <Position X="6.75" Y="0.5" Width="2.25" />
-    <Compartments>
-      <Compartment Name="Nested Types" Collapsed="false" />
-    </Compartments>
+    <Position X="0.5" Y="1" Width="2" />
     <NestedTypes>
       <Delegate Name="Edit_and_Convert.Program.del" Collapsed="true">
         <TypeIdentifier>
@@ -20,22 +38,15 @@
       </Delegate>
     </NestedTypes>
     <TypeIdentifier>
-      <HashCode>AAAAAEEAAAAAAAAAAAAACAAAAAAEAACCAAAABAAACAA=</HashCode>
+      <HashCode>AAAAAEAAAAAAAAAAAAAACAAAAAAEAACCAAAABAAAAAA=</HashCode>
       <FileName>Program.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Edit_and_Convert.Serial">
-    <Position X="3" Y="0.5" Width="1.5" />
+    <Position X="8.75" Y="1" Width="2.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAABAAAAAAAABAAAAAAAAACEAAAAAAAAAAA=</HashCode>
       <FileName>Serial.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="Edit_and_Convert.Deserial">
-    <Position X="0.5" Y="0.5" Width="2" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAABAAAAIAAAAAAAAAAAAACEAAAAAAAAAAA=</HashCode>
-      <FileName>Deserial.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Font Name="Segoe UI" Size="9" />

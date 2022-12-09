@@ -10,6 +10,7 @@ using System.Xml;
 using System.Xml.Serialization;
 using System.Xml.Resolvers;
 using Newtonsoft.Json;
+using System.Threading;
 
 namespace Edit_and_Convert
 {
@@ -41,8 +42,32 @@ namespace Edit_and_Convert
         {
             c();
             Console.InputEncoding = Encoding.Unicode;
-            Console.WriteLine("Нажмите F1 - сохранить файл, F2 - Загрузить файл");
+            Console.WriteLine("Нажмите F1 - сохранить файл, F2 - Загрузить файл (L),\nF3 - Запустить конструктор модели, Q - Как создать файл шаблона?");
             ConsoleKey consoleKey = Console.ReadKey(true).Key;
+            if (consoleKey == ConsoleKey.L)
+            {
+                Model.somelist = new List<Model>() { new Model("Test name", "test descr", "firld troololo"),
+                    new Model("2Test name2", "test desc2r2", "2firld troololo2") };
+                Console.WriteLine("Стандарт загружен");
+                Thread.Sleep(1000);
+            }
+            if (consoleKey == ConsoleKey.Q)
+            {
+                Console.WriteLine(" 1. Создать файл `имя_файла.txt`" +
+                                  "\n 2. Чтобы создать объект надо заполнить три строчки по следующему образцу:" +
+                                  "\n  Имя модели" +
+                                  "\n  Описание" +
+                                  "\n  Свойство" +
+                                  "\n Чтобы создать список из объектов, оформляйте так:" +
+                                  "\n  Имя модели1" +
+                                  "\n  Описание1" +
+                                  "\n  Свойство1" +
+                                  "\n  Имя модели2" +
+                                  "\n  Описание2" +
+                                  "\n  Свойство2" +
+                                  "\n Либо воспользуетесь конструктором модели");
+                Console.ReadKey();
+            }
             if (consoleKey == ConsoleKey.Escape)
             {
                 Environment.Exit(0);
@@ -71,7 +96,7 @@ namespace Edit_and_Convert
             }
             else if (consoleKey == ConsoleKey.F2)
             {
-                Console.WriteLine("Перетащите файл или Введите путь до файла:");
+                Console.WriteLine("Перетащите ФАЙЛ или Введите путь до ФАЙЛА:");
                 try
                 {
                     do
@@ -79,7 +104,7 @@ namespace Edit_and_Convert
                         Program.way = $@"{Console.ReadLine().Replace("\"", "")}";
                         if (!Program.way.Contains("."))
                         {
-                            Console.WriteLine("Вы не можете десериализовать папку! Укажите файл");
+                            Console.WriteLine("Вы не можете десериализовать папку! Укажите ФАЙЛ");
                         }
                     } while (!Program.way.Contains("."));
                 }
@@ -99,9 +124,9 @@ namespace Edit_and_Convert
                     Console.WriteLine($"Файл {way} не существует!!!");
                 }
             }
-            else
+            else if (consoleKey == ConsoleKey.F3)
             {
-                c();
+                Editor.ObjectEditor(Model.somelist);
             }
             format = "";
             Main(args);

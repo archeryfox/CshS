@@ -28,7 +28,7 @@ namespace Edit_and_Convert
                     string f = "";
                     if (i == 0)
                     {
-                        if (str[0] == "")
+                        if (str[0] == "" || str[0].Contains(" "))
                         {
                             Console.WriteLine("Файл пуст!");
                         }
@@ -48,6 +48,8 @@ namespace Edit_and_Convert
             foreach (var item in list)
             {
                 Console.WriteLine(item.Name);
+                Console.WriteLine(item.Description);
+                Console.WriteLine(item.Field);
             }
             Model.somelist = list;
             slep();
@@ -108,7 +110,7 @@ namespace Edit_and_Convert
             return new List<Model>();
         }
 
-        private static void slep()
+        public static void slep()
         {
             Console.WriteLine("\nНажмите любую клавишу для следующей операции");
             Console.ReadKey(true);
